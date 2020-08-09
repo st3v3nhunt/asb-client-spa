@@ -1,24 +1,24 @@
 <template>
-  <div id="app">
+  <div id="app" class="container">
+    <Connection/>
   </div>
 </template>
 
 <script>
+import Connection from '@/components/Connection.vue'
 
 export default {
   name: 'App',
   components: {
+    Connection
+  },
+  data () {
+    return {
+      queueClient: null
+    }
   }
 }
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
 </style>
