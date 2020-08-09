@@ -37,6 +37,14 @@ export default {
       queueName: null
     }
   },
+  mounted () {
+    if (localStorage.getItem('connectionString')) {
+      this.connectionString = localStorage.getItem('connectionString')
+    }
+    if (localStorage.getItem('queueName')) {
+      this.queueName = localStorage.getItem('queueName')
+    }
+  },
   methods: {
     checkForm () {
       this.errors = []
@@ -48,6 +56,8 @@ export default {
       }
 
       if (!this.errors.length) {
+        localStorage.setItem('connectionString', this.connectionString)
+        localStorage.setItem('queueName', this.queueName)
         this.connect()
       }
     },
