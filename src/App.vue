@@ -1,6 +1,6 @@
 <template>
   <div id="app" class="container">
-    <Connection/>
+    <connection @create:queueClient="setQueueClient"/>
   </div>
 </template>
 
@@ -15,6 +15,11 @@ export default {
   data () {
     return {
       queueClient: null
+    }
+  },
+  methods: {
+    setQueueClient (queueClient) {
+      this.queueClient = queueClient
     }
   }
 }

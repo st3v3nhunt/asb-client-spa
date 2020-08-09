@@ -44,6 +44,10 @@ export default {
     if (localStorage.getItem('queueName')) {
       this.queueName = localStorage.getItem('queueName')
     }
+
+    // assuming both queueName and connectionString are populated means they
+    // are valid the connection could be made automatically e.g.
+    // this.connect()
   },
   methods: {
     checkForm () {
@@ -66,6 +70,7 @@ export default {
       const sbClient = ServiceBusClient.createFromConnectionString(this.connectionString)
       const queueClient = sbClient.createQueueClient(this.queueName)
       console.log('queueClient', queueClient)
+      this.$emit('create:queueClient', queueClient)
     }
   }
 }
