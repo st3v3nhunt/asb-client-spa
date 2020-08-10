@@ -1,5 +1,5 @@
 <template>
-  <div id="connection">
+  <div id="service-bus-client">
   <form @submit.prevent="checkForm">
     <p v-if="errors.length">
       <b>Please correct the following error(s):</b>
@@ -13,41 +13,36 @@
       <input class="input" type="text" v-model.trim="connectionString" placeholder="Connection String">
     </div>
 
-    <div class="field">
-      <label class="label">Queue Name</label>
-      <input class="input" type="text" v-model.trim="queueName" placeholder="Queue Name">
-    </div>
-
     <div class="control">
-      <button class="button is-primary">Connect</button>
+      <button class="button is-primary">Connect to Service Bus</button>
     </div>
   </form>
+  <message-viewer :sbClient="sbClient"/>
   </div>
 </template>
 
 <script>
 import { ServiceBusClient } from '@azure/service-bus'
+import MessageViewer from '@/components/MessageViewer.vue'
 
 export default {
-  name: 'Connection',
+  name: 'ServiceBusClientConnection',
+  components: {
+    MessageViewer
+  },
   data () {
     return {
       errors: [],
       connectionString: null,
-      queueName: null
+      sbClient: null
     }
   },
   mounted () {
     if (localStorage.getItem('connectionString')) {
       this.connectionString = localStorage.getItem('connectionString')
     }
-    if (localStorage.getItem('queueName')) {
-      this.queueName = localStorage.getItem('queueName')
-    }
-
-    // assuming both queueName and connectionString are populated means they
-    // are valid the connection could be made automatically e.g.
-    // this.connect()
+    // assuming connectionString being populated means it is valid, the
+    // connection could be made automatically e.g. this.connectToServiceBus()
   },
   methods: {
     checkForm () {
@@ -55,22 +50,15 @@ export default {
       if (!this.connectionString) {
         this.errors.push('Connection String is required.')
       }
-      if (!this.queueName) {
-        this.errors.push('Queue Name is required.')
-      }
 
       if (!this.errors.length) {
         localStorage.setItem('connectionString', this.connectionString)
-        localStorage.setItem('queueName', this.queueName)
-        this.connect()
+        this.connectToServiceBus()
       }
     },
-    connect () {
-      console.log(`Connecting to queue '${this.queueName}'...`)
-      const sbClient = ServiceBusClient.createFromConnectionString(this.connectionString)
-      const queueClient = sbClient.createQueueClient(this.queueName)
-      console.log('queueClient', queueClient)
-      this.$emit('create:queueClient', queueClient)
+    connectToServiceBus () {
+      this.sbClient = ServiceBusClient.createFromConnectionString(this.connectionString)
+      /* this.$emit('create:serviceBusClient', sbClient) */
     }
   }
 }

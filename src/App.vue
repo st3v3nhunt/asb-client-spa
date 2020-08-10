@@ -1,26 +1,26 @@
 <template>
   <div id="app" class="container">
-    <connection @create:queueClient="setQueueClient"/>
+    <service-bus-client />
   </div>
 </template>
 
 <script>
-import Connection from '@/components/Connection.vue'
+import ServiceBusClient from '@/components/ServiceBusClient.vue'
 
 export default {
   name: 'App',
   components: {
-    Connection
+    ServiceBusClient
   },
   data () {
     return {
-      queueClient: null
+      /* qclient: null */
     }
   },
   methods: {
-    setQueueClient (queueClient) {
-      this.queueClient = queueClient
-    }
+    /* setQueueClient (qclient) { */
+    /*   this.qclient = qclient */
+    /* } */
   }
 }
 </script>
