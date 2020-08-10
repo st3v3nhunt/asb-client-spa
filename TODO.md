@@ -1,13 +1,23 @@
-## Features to implement
+## Features
 
-* Consider if the queue client should be passed up to the app or if other
-  components should be children of the connection component - probably the latter
-* Improve validation on the input for 'Connection String' (check for Endpoint,
-  SharedAccessKeyName, SharedAccessKey)
 * Show available queues for the Service Bus
 * Select the queue to use from the list
+
+## Error Handling
+
+* Make the form active only is the connection to the service bus exists
+* Share the error handling code on the form - maybe just a component with a template?
+* Improve validation on the input for 'Connection String' (check for Endpoint, SharedAccessKeyName, SharedAccessKey)
 * Add errors to each element along with summary above them all
+
+## Questions
+
+* Consider if the queue client should be passed up to the app or if other components should be children of the connection component - probably the latter
+
+## Nice to haves
+
 * Install Bulma rather than linking to the CDN version
+* Automatically connect to the Service Bus when the app loads, if the connection string is available in LocalStorage (assuming that means it is valid)
 
 ---
 
