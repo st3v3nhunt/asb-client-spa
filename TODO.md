@@ -1,5 +1,6 @@
 ## Features
 
+* Show messages from the subscribed to queue
 * Show available queues for the Service Bus
 * Select the queue to use from the list
 

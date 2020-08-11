@@ -1,27 +1,38 @@
 <template>
   <div id="message-viewer">
-  <form @submit.prevent="checkForm">
-    <p v-if="errors.length">
-      <b>Please correct the following error(s):</b>
-      <ul>
-        <li v-for="error in errors" :key="error">{{ error }}</li>
-      </ul>
-    </p>
+    <div class="control">
+      <form @submit.prevent="checkForm">
+        <p v-if="errors.length">
+          <b>Please correct the following error(s):</b>
+          <ul>
+            <li v-for="error in errors" :key="error">{{ error }}</li>
+          </ul>
+        </p>
 
-    <div class="field">
-      <label class="label">Queue Name</label>
-      <input class="input" type="text" v-model.trim="queueName" placeholder="Queue Name">
+        <div class="field">
+          <label class="label">Queue Name</label>
+          <input class="input" type="text" v-model.trim="queueName" placeholder="Queue Name">
+        </div>
+
+        <div class="control">
+          <button class="button is-info" :disabled="!sbClient">Connect to Queue</button>
+        </div>
+      </form>
     </div>
 
     <div class="control">
-      <button class="button is-info" :disabled="!sbClient">Connect to Queue</button>
-    </div>
-  </form>
-  <div class="control">
-    <div class="buttons">
       <button class="button is-info" :disabled="!qClient" @click="subscribeToMessages()">Subscribe to Messages</button>
     </div>
-  </div>
+
+    <article v-for="(message, index) in messages" :key="message.messageId" :class="['message', 'is-small', (index === 0) ? 'is-info' : 'is-dark' ]">
+      <div class="message-header">
+        <p>MessageId: {{ message.messageId }}. Enqueued at: {{ message.enqueuedTimeUtc }}</p>
+      </div>
+
+      <div class="message-body">
+        {{ message.body }}
+      </div>
+    </article>
   </div>
 </template>
 
@@ -63,7 +74,7 @@ export default {
       const receiver = this.qClient.createReceiver(ReceiveMode.peekLock)
       receiver.registerMessageHandler(async (msg) => {
         console.log('received message', msg)
-        this.messages.push(msg)
+        this.messages.unshift(msg)
       },
       async (err) => {
         console.error('error receiving message', err)

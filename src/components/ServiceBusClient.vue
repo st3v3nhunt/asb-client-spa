@@ -1,23 +1,25 @@
 <template>
   <div id="service-bus-client">
-  <form @submit.prevent="checkForm">
-    <p v-if="errors.length">
-      <b>Please correct the following error(s):</b>
-      <ul>
-        <li v-for="error in errors" :key="error">{{ error }}</li>
-      </ul>
-    </p>
-
-    <div class="field">
-      <label class="label">Connection String</label>
-      <input class="input" type="text" v-model.trim="connectionString" placeholder="Connection String">
-    </div>
-
     <div class="control">
-      <button class="button is-primary">Connect to Service Bus</button>
+      <form @submit.prevent="checkForm">
+        <p v-if="errors.length">
+          <b>Please correct the following error(s):</b>
+          <ul>
+            <li v-for="error in errors" :key="error">{{ error }}</li>
+          </ul>
+        </p>
+
+        <div class="field">
+          <label class="label">Connection String</label>
+          <input class="input" type="text" v-model.trim="connectionString" placeholder="Connection String">
+        </div>
+
+        <div class="control">
+          <button class="button is-primary">Connect to Service Bus</button>
+        </div>
+      </form>
     </div>
-  </form>
-  <message-viewer :sbClient="sbClient"/>
+    <message-viewer :sbClient="sbClient"/>
   </div>
 </template>
 
