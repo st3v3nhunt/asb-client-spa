@@ -37,9 +37,11 @@ export default {
       sbClient: null
     }
   },
-  mounted () {
+  created () {
+    console.log('created in ServiceBusClient')
     if (localStorage.getItem('connectionString')) {
       this.connectionString = localStorage.getItem('connectionString')
+      this.connectToServiceBus()
     }
     // assuming connectionString being populated means it is valid, the
     // connection could be made automatically e.g. this.connectToServiceBus()

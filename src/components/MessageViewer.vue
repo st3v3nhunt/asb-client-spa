@@ -67,14 +67,17 @@ export default {
       },
       async (err) => {
         console.error('error receiving message', err)
-      }
-      )
+      })
       /* this.messages = await receiver.receiveMessages(10) */
     }
   },
-  mounted () {
+  created () {
+    console.log('created in MessageViewer')
     if (localStorage.getItem('queueName')) {
       this.queueName = localStorage.getItem('queueName')
+      if (this.sbClient) {
+        this.connectToQueue()
+      }
     }
   }
 }
