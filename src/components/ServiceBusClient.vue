@@ -1,23 +1,22 @@
 <template>
   <div id="service-bus-client">
-    <div class="control">
-      <form @submit.prevent="checkForm">
-        <p v-if="errors.length">
-          <b>Please correct the following error(s):</b>
-          <ul>
-            <li v-for="error in errors" :key="error">{{ error }}</li>
-          </ul>
-        </p>
+    <div>
+      <p v-if="errors.length">
+        <b>Please correct the following error(s):</b>
+        <ul>
+          <li v-for="error in errors" :key="error">{{ error }}</li>
+        </ul>
+      </p>
 
-        <div class="field">
-          <label class="label">Connection String</label>
+      <div class="field is-grouped">
+        <div class="control is-expanded">
           <input class="input" type="text" v-model.trim="connectionString" placeholder="Connection String">
         </div>
-
         <div class="control">
-          <button class="button is-primary">Connect to Service Bus</button>
+          <button class="button is-primary" @click.prevent="checkForm">Connect to Service Bus</button>
         </div>
-      </form>
+      </div>
+
     </div>
     <message-viewer :sbClient="sbClient"/>
   </div>
@@ -45,8 +44,6 @@ export default {
       this.connectionString = localStorage.getItem('connectionString')
       this.connectToServiceBus()
     }
-    // assuming connectionString being populated means it is valid, the
-    // connection could be made automatically e.g. this.connectToServiceBus()
   },
   methods: {
     checkForm () {

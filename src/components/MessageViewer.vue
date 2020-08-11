@@ -1,23 +1,21 @@
 <template>
   <div id="message-viewer">
-    <div class="control">
-      <form @submit.prevent="checkForm">
-        <p v-if="errors.length">
-          <b>Please correct the following error(s):</b>
-          <ul>
-            <li v-for="error in errors" :key="error">{{ error }}</li>
-          </ul>
-        </p>
+    <div>
+      <p v-if="errors.length">
+        <b>Please correct the following error(s):</b>
+        <ul>
+          <li v-for="error in errors" :key="error">{{ error }}</li>
+        </ul>
+      </p>
 
-        <div class="field">
-          <label class="label">Queue Name</label>
+      <div class="field is-grouped">
+        <div class="control is-expanded">
           <input class="input" type="text" v-model.trim="queueName" placeholder="Queue Name">
         </div>
-
         <div class="control">
-          <button class="button is-info" :disabled="!sbClient">Connect to Queue</button>
+          <button class="button is-info" @click.prevent="checkForm" :disabled="!sbClient">Connect to Queue</button>
         </div>
-      </form>
+      </div>
     </div>
 
     <div class="control">

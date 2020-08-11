@@ -18,6 +18,7 @@
 ## Nice to haves
 
 * Install Bulma rather than linking to the CDN version
+* Add stop subscribing button
 
 ---
 
