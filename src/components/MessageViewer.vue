@@ -20,7 +20,10 @@
 
     <div class="field is-grouped">
       <div class="control">
-        <button class="button is-info" :disabled="!qClient" @click="subscribeToMessages()">Subscribe to Messages</button>
+        <button class="button is-success" :disabled="!qClient || isReceiving" @click="subscribeToMessages()">Subscribe to Messages</button>
+      </div>
+      <div class="control">
+        <button class="button is-warning" :disabled="!isReceiving" @click="unsubscribeToMessages()">Unsubscribe to Messages</button>
       </div>
       <div class="content is-medium" v-if="isReceiving">Receiving messages from <span class="tag is-black is-medium">{{ qName }}</span></div>
     </div>
@@ -48,7 +51,8 @@ export default {
       isReceiving: false,
       messages: [],
       qClient: null,
-      qName: null
+      qName: null,
+      receiver: null
     }
   },
   props: {
@@ -72,9 +76,9 @@ export default {
       console.log('qClient', this.qClient)
     },
     async subscribeToMessages () {
-      console.log('get them messages')
-      const receiver = this.qClient.createReceiver(ReceiveMode.peekLock)
-      receiver.registerMessageHandler(async (msg) => {
+      console.log('subscribing to messages')
+      this.receiver = this.qClient.createReceiver(ReceiveMode.peekLock)
+      this.receiver.registerMessageHandler(async (msg) => {
         console.log('received message', msg)
         this.messages.unshift(msg)
       },
@@ -82,6 +86,11 @@ export default {
         console.error('error receiving message', err)
       })
       this.isReceiving = true
+    },
+    async unsubscribeToMessages () {
+      await this.receiver.close()
+      this.isReceiving = false
+      console.log('qClient closed')
     }
   },
   created () {
