@@ -1,6 +1,6 @@
 <template>
   <div id="service-bus-client">
-    <div>
+    <form @submit.prevent="checkForm">
       <p v-if="errors.length">
         <b>Please correct the following error(s):</b>
         <ul>
@@ -13,11 +13,11 @@
           <input class="input" type="text" v-model.trim="connectionString" placeholder="Connection String">
         </div>
         <div class="control">
-          <button class="button is-primary" @click.prevent="checkForm">Connect to Service Bus</button>
+          <button class="button is-primary">Connect to Service Bus</button>
         </div>
       </div>
+    </form>
 
-    </div>
     <message-viewer :sbClient="sbClient"/>
   </div>
 </template>

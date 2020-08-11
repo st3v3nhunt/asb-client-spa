@@ -1,6 +1,6 @@
 <template>
   <div id="message-viewer">
-    <div>
+    <form @submit.prevent="checkForm">
       <p v-if="errors.length">
         <b>Please correct the following error(s):</b>
         <ul>
@@ -10,16 +10,19 @@
 
       <div class="field is-grouped">
         <div class="control is-expanded">
-          <input class="input" type="text" v-model.trim="queueName" placeholder="Queue Name">
+          <input class="input" type="text" v-model.trim="qName" placeholder="Queue Name">
         </div>
         <div class="control">
-          <button class="button is-info" @click.prevent="checkForm" :disabled="!sbClient">Connect to Queue</button>
+          <button class="button is-info" :disabled="!sbClient">Connect to Queue</button>
         </div>
       </div>
-    </div>
+    </form>
 
-    <div class="control">
-      <button class="button is-info" :disabled="!qClient" @click="subscribeToMessages()">Subscribe to Messages</button>
+    <div class="field is-grouped">
+      <div class="control">
+        <button class="button is-info" :disabled="!qClient" @click="subscribeToMessages()">Subscribe to Messages</button>
+      </div>
+      <div class="content is-medium" v-if="isReceiving">Receiving messages from <span class="tag is-black is-medium">{{ qName }}</span></div>
     </div>
 
     <article v-for="(message, index) in messages" :key="message.messageId" :class="['message', 'is-small', (index === 0) ? 'is-info' : 'is-dark' ]">
@@ -42,9 +45,10 @@ export default {
   data () {
     return {
       errors: [],
+      isReceiving: false,
       messages: [],
       qClient: null,
-      queueName: null
+      qName: null
     }
   },
   props: {
@@ -53,18 +57,18 @@ export default {
   methods: {
     checkForm () {
       this.errors = []
-      if (!this.queueName) {
+      if (!this.qName) {
         this.errors.push('Queue Name is required.')
       }
 
       if (!this.errors.length) {
-        localStorage.setItem('queueName', this.queueName)
+        localStorage.setItem('qName', this.qName)
         this.connectToQueue()
       }
     },
     connectToQueue () {
-      console.log(`Connecting to queue '${this.queueName}'...`)
-      this.qClient = this.sbClient.createQueueClient(this.queueName)
+      console.log(`Connecting to queue '${this.qName}'...`)
+      this.qClient = this.sbClient.createQueueClient(this.qName)
       console.log('qClient', this.qClient)
     },
     async subscribeToMessages () {
@@ -77,13 +81,13 @@ export default {
       async (err) => {
         console.error('error receiving message', err)
       })
-      /* this.messages = await receiver.receiveMessages(10) */
+      this.isReceiving = true
     }
   },
   created () {
     console.log('created in MessageViewer')
-    if (localStorage.getItem('queueName')) {
-      this.queueName = localStorage.getItem('queueName')
+    if (localStorage.getItem('qName')) {
+      this.qName = localStorage.getItem('qName')
       if (this.sbClient) {
         this.connectToQueue()
       }
