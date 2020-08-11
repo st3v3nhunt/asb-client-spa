@@ -25,7 +25,7 @@
       <div class="control">
         <button class="button is-warning" :disabled="!isReceiving" @click="unsubscribeToMessages()">Unsubscribe to Messages</button>
       </div>
-      <div class="content is-medium" v-if="isReceiving">Receiving messages from <span class="tag is-black is-medium">{{ qName }}</span></div>
+      <div class="content is-medium" v-if="isReceiving">Receiving messages from <span class="tag is-black is-medium">{{ qClient.entityPath }}</span></div>
     </div>
 
     <article v-for="(message, index) in messages" :key="message.messageId" :class="['message', 'is-small', (index === 0) ? 'is-info' : 'is-dark' ]">
