@@ -38,7 +38,7 @@
     <div>
       <article v-for="(message, index) in messages" :key="message.messageId" :class="['message', 'is-small', (index === 0) ? 'is-info' : 'is-dark' ]">
         <div class="message-header">
-          <p>MessageId: {{ message.messageId }}. Enqueued at: {{ message.enqueuedTimeUtc }}</p>
+          <p>MessageId: {{ message.messageId }}. Queue Source: {{ message._context.entityPath }}. Enqueued at: {{ message.enqueuedTimeUtc }}</p>
         </div>
 
         <div class="message-body">
