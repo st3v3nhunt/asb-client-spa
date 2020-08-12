@@ -1,5 +1,6 @@
 <template>
-  <div id="service-bus-client">
+  <div class="columns">
+  <div id="service-bus-client" class="column">
     <form @submit.prevent="checkForm">
       <p v-if="errors.length">
         <b>Please correct the following error(s):</b>
@@ -17,25 +18,21 @@
         </div>
       </div>
     </form>
-
-    <message-viewer :sbClient="sbClient"/>
+  </div>
   </div>
 </template>
 
 <script>
 import { ServiceBusClient } from '@azure/service-bus'
-import MessageViewer from '@/components/MessageViewer.vue'
 
 export default {
   name: 'ServiceBusClientConnection',
   components: {
-    MessageViewer
   },
   data () {
     return {
       errors: [],
-      connectionString: null,
-      sbClient: null
+      connectionString: null
     }
   },
   created () {
@@ -58,8 +55,8 @@ export default {
       }
     },
     connectToServiceBus () {
-      this.sbClient = ServiceBusClient.createFromConnectionString(this.connectionString)
-      /* this.$emit('create:serviceBusClient', sbClient) */
+      const sbClient = ServiceBusClient.createFromConnectionString(this.connectionString)
+      this.$emit('create:serviceBusClient', sbClient)
     }
   }
 }

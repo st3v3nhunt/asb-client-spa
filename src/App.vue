@@ -1,26 +1,31 @@
 <template>
-  <div id="app" class="container is-fluid">
-    <service-bus-client />
-  </div>
+  <section class="section">
+    <div class="container is-fluid">
+      <service-bus-client @create:serviceBusClient="setServiceBusClient"/>
+      <message-viewer :sbClient="sbClient"/>
+    </div>
+  </section>
 </template>
 
 <script>
 import ServiceBusClient from '@/components/ServiceBusClient.vue'
+import MessageViewer from '@/components/MessageViewer.vue'
 
 export default {
   name: 'App',
   components: {
+    MessageViewer,
     ServiceBusClient
   },
   data () {
     return {
-      /* qclient: null */
+      sbClient: null
     }
   },
   methods: {
-    /* setQueueClient (qclient) { */
-    /*   this.qclient = qclient */
-    /* } */
+    setServiceBusClient (sbClient) {
+      this.sbClient = sbClient
+    }
   }
 }
 </script>
