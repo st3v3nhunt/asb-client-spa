@@ -50,7 +50,7 @@
 import { ReceiveMode } from '@azure/service-bus'
 
 export default {
-  name: 'MessageViewer',
+  name: 'QueueClient',
   data () {
     return {
       errors: [],
@@ -100,7 +100,7 @@ export default {
     }
   },
   created () {
-    console.log('created in MessageViewer')
+    console.log('created in QueueClient')
     if (localStorage.getItem('qName')) {
       this.qName = localStorage.getItem('qName')
       if (this.sbClient) {
