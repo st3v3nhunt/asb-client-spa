@@ -1,7 +1,7 @@
 <template>
   <div class="columns">
   <div class="column">
-    <form @submit.prevent="checkForm">
+    <form>
       <p v-if="errors.length">
         <b>Please correct the following error(s):</b>
         <ul>
@@ -28,10 +28,10 @@
         <div class="field-body">
           <div class="field is-grouped">
             <div class="control">
-              <button class="button is-success">Connect</button>
+              <button class="button is-success" :disabled="sbClient" @click.prevent="checkForm">Connect</button>
             </div>
             <div class="control">
-              <button class="button is-warning" disabled>Disconnect</button>
+              <button class="button is-warning" :disabled="!sbClient" @click.prevent="disconnect">Disconnect</button>
             </div>
           </div>
         </div>
@@ -51,7 +51,8 @@ export default {
   data () {
     return {
       errors: [],
-      connectionString: null
+      connectionString: null,
+      sbClient: null
     }
   },
   created () {
@@ -74,9 +75,15 @@ export default {
       }
     },
     connectToServiceBus () {
-      const sbClient = ServiceBusClient.createFromConnectionString(this.connectionString)
-      this.$emit('create:serviceBusClient', sbClient)
+      this.sbClient = ServiceBusClient.createFromConnectionString(this.connectionString)
+      this.$emit('create:serviceBusClient', this.sbClient)
       console.log('Connected to ServiceBusClient')
+    },
+    async disconnect () {
+      await this.sbClient.close()
+      this.sbClient = null
+      this.$emit('destroy:serviceBusClient')
+      console.log('Disconneted ServiceBusClient')
     }
   }
 }

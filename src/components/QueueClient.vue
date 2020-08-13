@@ -2,7 +2,7 @@
   <div>
     <div class="columns">
       <div class="column">
-        <form @submit.prevent="checkForm">
+        <form>
           <p v-if="errors.length">
             <b>Please correct the following error(s):</b>
             <ul>
@@ -29,10 +29,10 @@
           <div class="field-body">
             <div class="field is-grouped">
               <div class="control">
-                <button class="button is-success" :disabled="!sbClient">Connect</button>
+                <button class="button is-success" :disabled="disableConnectButton" @click.prevent="checkForm">Connect</button>
               </div>
               <div class="control">
-                <button class="button is-warning" disabled>Disconnect</button>
+                <button class="button is-warning" :disabled="!qClient" @click.prevent="disconnect">Disconnect</button>
               </div>
             </div>
           </div>
@@ -86,12 +86,41 @@ export default {
     connectToQueue () {
       this.qClient = this.sbClient.createQueueClient(this.qName)
       console.log('Connected to QueueClient')
+    },
+    async disconnect () {
+      if (this.qClient) {
+        await this.qClient.close()
+        this.qClient = null
+        console.log('Disconneted QueueClient')
+      } else {
+        console.log('QueueClient did not exist')
+      }
+    }
+  },
+  computed: {
+    disableConnectButton () {
+      if (this.sbClient && this.qClient) {
+        console.log('sb exists, qc exists, disable it')
+        return true
+      }
+      if (this.sbClient && !this.qClient) {
+        console.log('sb exists, qc doesnt exist, enable it')
+        return false
+      }
+      if (!this.sbClient) {
+        console.log('sb doesnt exist, disable it')
+        return true
+      }
+      console.log('default, disable')
+      return true
     }
   },
   watch: {
-    sbClient () {
+    async sbClient () {
       if (this.sbClient) {
         this.connectToQueue()
+      } else {
+        await this.disconnect()
       }
     }
   },

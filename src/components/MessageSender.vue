@@ -14,7 +14,7 @@
       </div>
       <div class="field">
         <div class="control">
-          <button class="button is-success">Send Message</button>
+          <button class="button is-success" :disabled="!qClient">Send Message</button>
         </div>
       </div>
     </form>
@@ -57,6 +57,15 @@ export default {
     console.log('MessageSender component created')
     if (localStorage.getItem('message')) {
       this.message = localStorage.getItem('message')
+    }
+  },
+  watch: {
+    async qClient () {
+      if (this.qClient) {
+        this.sender = this.qClient.createSender()
+      } else {
+        this.sender = null
+      }
     }
   }
 }

@@ -1,7 +1,10 @@
 <template>
   <section class="section">
     <div class="container is-fluid">
-      <service-bus-client @create:serviceBusClient="setServiceBusClient"/>
+      <service-bus-client
+        @create:serviceBusClient="setServiceBusClient"
+        @destroy:serviceBusClient="destroyServiceBusClient"
+        />
       <queue-client :sbClient="sbClient"/>
     </div>
   </section>
@@ -23,6 +26,10 @@ export default {
     }
   },
   methods: {
+    destroyServiceBusClient () {
+      this.sbClient = null
+      console.log('Destroying ServiceBusClient')
+    },
     setServiceBusClient (sbClient) {
       this.sbClient = sbClient
     }
