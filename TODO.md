@@ -1,14 +1,14 @@
 ## Features
 
-* Add button for disconnecting from the service bus (effectively closing the connection)
-* Add button for disconnecting from the queue (effectively closing the connection)
-* Add message for service bus being connected
-* Add message for queue client being connected
-* Turn on sender button only when the queue has been connected to
-* Add auto id generation to the sender
-* List out the messages as they are sent
+* Disable 'unsubscribe' button when disconnecting from service bus
+* Disable 'unsubscribe' button when disconnecting from queue client
+* Fix issue with 'subscribed to QUEUE' message when not subscribed
 * Add clear message button to the receiver
 * Add clear message button to the sender
+* Add message for service bus being connected
+* Add message for queue client being connected
+* Add auto id generation to the sender
+* List out the messages as they are sent
 * Namespace the message against the queue in local storage
 
 * Add ability to save messages and recall them so there is access to a selection of pre-saved messages
@@ -39,3 +39,6 @@
 * Add stop subscribing button
 * Make the form active only is the connection to the service bus exists
 * Store the message in local storage to save having to paste it in all the time
+* Add button for disconnecting from the service bus (effectively closing the connection)
+* Add button for disconnecting from the queue (effectively closing the connection)
+* Turn on sender button only when the queue has been connected to
