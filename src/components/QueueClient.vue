@@ -27,13 +27,13 @@
         <div class="control">
           <button class="button is-success is-fullwidth" :disabled="!qClient || isReceiving" @click="subscribeToMessages()">Subscribe to Messages</button>
         </div>
+        <div :class="['content', 'is-medium', { 'is-invisible': !isReceiving }]">Subscribed to <span class="tag is-success">{{ qClient ? qClient.entityPath : '' }}</span></div>
       </div>
       <div class="column">
         <div class="control">
           <button class="button is-warning is-fullwidth" :disabled="!isReceiving" @click="unsubscribeToMessages()">Unsubscribe to Messages</button>
         </div>
       </div>
-      <div :class="['column', 'content', 'is-medium', { 'is-invisible': !isReceiving }]">Receiving messages from <span class="tag is-black is-medium">{{ qClient ? qClient.entityPath : '' }}</span></div>
     </div>
 
     <div class="columns">
