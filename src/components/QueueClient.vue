@@ -20,31 +20,34 @@
           </div>
         </form>
       </div>
-
-      <div class="column">
-        <div class="field is-grouped">
-          <div class="control">
-            <button class="button is-success" :disabled="!qClient || isReceiving" @click="subscribeToMessages()">Subscribe to Messages</button>
-          </div>
-          <div class="control">
-            <button class="button is-warning" :disabled="!isReceiving" @click="unsubscribeToMessages()">Unsubscribe to Messages</button>
-          </div>
-        </div>
-      </div>
     </div>
 
-    <div :class="['content', 'is-medium', { 'is-invisible': !isReceiving }]">Receiving messages from <span class="tag is-black is-medium">{{ qClient ? qClient.entityPath : '' }}</span></div>
-
-    <div>
-      <article v-for="(message, index) in messages" :key="message.messageId" :class="['message', 'is-small', (index === 0) ? 'is-info' : 'is-dark' ]">
-        <div class="message-header">
-          <p>MessageId: {{ message.messageId }}. Queue Source: {{ message._context.entityPath }}. Enqueued at: {{ message.enqueuedTimeUtc }}</p>
+    <div class="columns">
+      <div class="column">
+        <div class="control">
+          <button class="button is-success is-fullwidth" :disabled="!qClient || isReceiving" @click="subscribeToMessages()">Subscribe to Messages</button>
         </div>
-
-        <div class="message-body">
-          {{ message.body }}
+      </div>
+      <div class="column">
+        <div class="control">
+          <button class="button is-warning is-fullwidth" :disabled="!isReceiving" @click="unsubscribeToMessages()">Unsubscribe to Messages</button>
         </div>
-      </article>
+      </div>
+      <div :class="['column', 'content', 'is-medium', { 'is-invisible': !isReceiving }]">Receiving messages from <span class="tag is-black is-medium">{{ qClient ? qClient.entityPath : '' }}</span></div>
+    </div>
+
+    <div class="columns">
+      <div class="column">
+        <article v-for="(message, index) in messages" :key="message.messageId" :class="['message', 'is-small', (index === 0) ? 'is-info' : 'is-dark' ]">
+          <div class="message-header">
+            <p>MessageId: {{ message.messageId }}. Queue Source: {{ message._context.entityPath }}. Enqueued at: {{ message.enqueuedTimeUtc }}</p>
+          </div>
+
+          <div class="message-body">
+            {{ message.body }}
+          </div>
+        </article>
+      </div>
     </div>
   </div>
 </template>

@@ -1,6 +1,6 @@
 <template>
   <div class="columns">
-  <div id="service-bus-client" class="column">
+  <div class="column">
     <form @submit.prevent="checkForm">
       <p v-if="errors.length">
         <b>Please correct the following error(s):</b>
