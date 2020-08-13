@@ -61,15 +61,20 @@ export default {
     },
     connectToQueue () {
       this.qClient = this.sbClient.createQueueClient(this.qName)
-      console.log(`Connected to queue '${this.qName}'...`)
+      console.log('Connected to QueueClient')
     }
   },
-  created () {
-    if (localStorage.getItem('qName')) {
-      this.qName = localStorage.getItem('qName')
+  watch: {
+    sbClient () {
       if (this.sbClient) {
         this.connectToQueue()
       }
+    }
+  },
+  created () {
+    console.log('QueueClient component created')
+    if (localStorage.getItem('qName')) {
+      this.qName = localStorage.getItem('qName')
     }
   }
 }
