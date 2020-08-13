@@ -21,50 +21,27 @@
         </form>
       </div>
     </div>
-
     <div class="columns">
       <div class="column">
-        <div class="control">
-          <button class="button is-success is-fullwidth" :disabled="!qClient || isReceiving" @click="subscribeToMessages()">Subscribe to Messages</button>
-        </div>
-        <div :class="['content', 'is-medium', { 'is-invisible': !isReceiving }]">Subscribed to <span class="tag is-success">{{ qClient ? qClient.entityPath : '' }}</span></div>
-      </div>
-      <div class="column">
-        <div class="control">
-          <button class="button is-warning is-fullwidth" :disabled="!isReceiving" @click="unsubscribeToMessages()">Unsubscribe to Messages</button>
-        </div>
-      </div>
-    </div>
-
-    <div class="columns">
-      <div class="column">
-        <article v-for="(message, index) in messages" :key="message.messageId" :class="['message', 'is-small', (index === 0) ? 'is-info' : 'is-dark' ]">
-          <div class="message-header">
-            <p>MessageId: {{ message.messageId }}. Queue Source: {{ message._context.entityPath }}. Enqueued at: {{ message.enqueuedTimeUtc }}</p>
-          </div>
-
-          <div class="message-body">
-            {{ message.body }}
-          </div>
-        </article>
+        <message-receiver :qClient="qClient"/>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import { ReceiveMode } from '@azure/service-bus'
+import MessageReceiver from '@/components/MessageReceiver.vue'
 
 export default {
   name: 'QueueClient',
+  components: {
+    MessageReceiver
+  },
   data () {
     return {
       errors: [],
-      isReceiving: false,
-      messages: [],
       qClient: null,
-      qName: null,
-      receiver: null
+      qName: null
     }
   },
   props: {
@@ -83,30 +60,11 @@ export default {
       }
     },
     connectToQueue () {
-      console.log(`Connecting to queue '${this.qName}'...`)
       this.qClient = this.sbClient.createQueueClient(this.qName)
-      console.log('qClient', this.qClient)
-    },
-    async subscribeToMessages () {
-      console.log('subscribing to messages')
-      this.receiver = this.qClient.createReceiver(ReceiveMode.peekLock)
-      this.receiver.registerMessageHandler(async (msg) => {
-        console.log('received message', msg)
-        this.messages.unshift(msg)
-      },
-      async (err) => {
-        console.error('error receiving message', err)
-      })
-      this.isReceiving = true
-    },
-    async unsubscribeToMessages () {
-      await this.receiver.close()
-      this.isReceiving = false
-      console.log('qClient closed')
+      console.log(`Connected to queue '${this.qName}'...`)
     }
   },
   created () {
-    console.log('created in QueueClient')
     if (localStorage.getItem('qName')) {
       this.qName = localStorage.getItem('qName')
       if (this.sbClient) {

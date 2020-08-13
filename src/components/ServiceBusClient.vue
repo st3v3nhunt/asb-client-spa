@@ -57,6 +57,7 @@ export default {
     connectToServiceBus () {
       const sbClient = ServiceBusClient.createFromConnectionString(this.connectionString)
       this.$emit('create:serviceBusClient', sbClient)
+      console.log('service bus client created')
     }
   }
 }
