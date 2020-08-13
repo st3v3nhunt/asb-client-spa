@@ -36,7 +36,7 @@ export default {
     }
   },
   created () {
-    console.log('created in ServiceBusClient')
+    console.log('ServiceBusClient component created')
     if (localStorage.getItem('connectionString')) {
       this.connectionString = localStorage.getItem('connectionString')
       this.connectToServiceBus()
@@ -57,7 +57,7 @@ export default {
     connectToServiceBus () {
       const sbClient = ServiceBusClient.createFromConnectionString(this.connectionString)
       this.$emit('create:serviceBusClient', sbClient)
-      console.log('service bus client created')
+      console.log('Connected to ServiceBusClient')
     }
   }
 }

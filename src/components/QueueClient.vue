@@ -25,17 +25,22 @@
       <div class="column">
         <message-receiver :qClient="qClient"/>
       </div>
+      <div class="column">
+        <message-sender :qClient="qClient"/>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
 import MessageReceiver from '@/components/MessageReceiver.vue'
+import MessageSender from '@/components/MessageSender.vue'
 
 export default {
   name: 'QueueClient',
   components: {
-    MessageReceiver
+    MessageReceiver,
+    MessageSender
   },
   data () {
     return {

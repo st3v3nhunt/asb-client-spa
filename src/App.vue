@@ -8,8 +8,8 @@
 </template>
 
 <script>
-import ServiceBusClient from '@/components/ServiceBusClient.vue'
 import QueueClient from '@/components/QueueClient.vue'
+import ServiceBusClient from '@/components/ServiceBusClient.vue'
 
 export default {
   name: 'App',
