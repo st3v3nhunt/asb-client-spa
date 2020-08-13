@@ -9,12 +9,31 @@
         </ul>
       </p>
 
-      <div class="field is-grouped">
-        <div class="control is-expanded">
-          <input class="input" type="text" v-model.trim="connectionString" placeholder="Connection String">
+      <div class="field is-horizontal">
+        <div class="field-label is-normal">
+          <label class="label">Connection String</label>
         </div>
-        <div class="control">
-          <button class="button is-primary">Connect to Service Bus</button>
+        <div class="field-body">
+          <div class="field">
+            <div class="control is-expanded">
+              <input class="input" type="text" v-model.trim="connectionString" placeholder="Enter a Connection String">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="field is-horizontal">
+        <div class="field-label">
+          <!-- Left empty for spacing -->
+        </div>
+        <div class="field-body">
+          <div class="field is-grouped">
+            <div class="control">
+              <button class="button is-success">Connect</button>
+            </div>
+            <div class="control">
+              <button class="button is-warning" disabled>Disconnect</button>
+            </div>
+          </div>
         </div>
       </div>
     </form>

@@ -10,14 +10,33 @@
             </ul>
           </p>
 
-          <div class="field is-grouped">
-            <div class="control is-expanded">
-              <input class="input" type="text" v-model.trim="qName" placeholder="Queue Name">
-            </div>
-            <div class="control">
-              <button class="button is-info" :disabled="!sbClient">Connect to Queue</button>
+        <div class="field is-horizontal">
+          <div class="field-label is-normal">
+            <label class="label">Queue Name</label>
+          </div>
+          <div class="field-body">
+            <div class="field">
+              <div class="control is-expanded">
+                <input class="input" type="text" v-model.trim="qName" placeholder="Enter a Queue Name">
+              </div>
             </div>
           </div>
+        </div>
+        <div class="field is-horizontal">
+          <div class="field-label">
+            <!-- Left empty for spacing -->
+          </div>
+          <div class="field-body">
+            <div class="field is-grouped">
+              <div class="control">
+                <button class="button is-success" :disabled="!sbClient">Connect</button>
+              </div>
+              <div class="control">
+                <button class="button is-warning" disabled>Disconnect</button>
+              </div>
+            </div>
+          </div>
+        </div>
         </form>
       </div>
     </div>

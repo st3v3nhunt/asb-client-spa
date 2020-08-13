@@ -14,7 +14,7 @@
       </div>
       <div class="field">
         <div class="control">
-          <button class="button is-info">Send Message</button>
+          <button class="button is-success">Send Message</button>
         </div>
       </div>
     </form>
