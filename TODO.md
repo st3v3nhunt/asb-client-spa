@@ -1,5 +1,16 @@
 ## Features
 
+* Store the message in local storage to save having to paste it in all the time
+* Turn on sender button only when the queue has been connected to
+* Add auto id generation to the sender
+* List out the messages as they are sent
+* Add clear message button to the receiver
+* Add clear message button to the sender
+* Add button for disconnecting from the service bus (effectively closing the connection)
+* Add button for disconnecting from the queue (effectively closing the connection)
+* Namespace the message against the queue in local storage
+
+* Add ability to save messages and recall them so there is access to a selection of pre-saved messages
 * Enable the interface to have multiple queues receiving messages, possibly tabs?
 * Add message sending ability
 * Improve the layout (ongoing)
