@@ -1,6 +1,5 @@
 ## Features
 
-* Store the message in local storage to save having to paste it in all the time
 * Turn on sender button only when the queue has been connected to
 * Add auto id generation to the sender
 * List out the messages as they are sent
@@ -26,10 +25,6 @@
 * Improve validation on the input for 'Connection String' (check for Endpoint, SharedAccessKeyName, SharedAccessKey)
 * Add errors to each element along with summary above them all
 
-## Questions
-
-* Consider if the queue client should be passed up to the app or if other components should be children of the connection component - probably the latter
-
 ---
 
 ## Features implemented
@@ -41,3 +36,4 @@
 * Show messages from the subscribed to queue
 * Add stop subscribing button
 * Make the form active only is the connection to the service bus exists
+* Store the message in local storage to save having to paste it in all the time
