@@ -1,7 +1,8 @@
 ## Features
 
+* Enable the interface to have multiple queues receiving messages, possibly tabs?
 * Add message sending ability
-* Improve the layout
+* Improve the layout (ongoing)
 * Show available queues for the Service Bus
 * Select the queue to use from the list
 * Install Bulma rather than linking to the CDN version
