@@ -1,7 +1,6 @@
 ## Features
 
-* Disable 'unsubscribe' button when disconnecting from service bus
-* Disable 'unsubscribe' button when disconnecting from queue client
+* Refactor `disableConnectButton` in QueueClient
 * Fix issue with 'subscribed to QUEUE' message when not subscribed
 * Add clear message button to the receiver
 * Add clear message button to the sender
@@ -43,3 +42,5 @@
 * Add button for disconnecting from the queue (effectively closing the connection)
 * Turn on sender button only when the queue has been connected to
 * [reverted] Dynamically set the height of the message box to show all of the content
+* Disable 'unsubscribe' button when disconnecting from service bus
+* Disable 'unsubscribe' button when disconnecting from queue client

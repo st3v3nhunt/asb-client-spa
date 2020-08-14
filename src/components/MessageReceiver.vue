@@ -63,6 +63,13 @@ export default {
       this.isReceiving = false
       console.log('receiver closed')
     }
+  },
+  watch: {
+    qClient () {
+      if (!this.qClient) {
+        this.isReceiving = false
+      }
+    }
   }
 }
 </script>
