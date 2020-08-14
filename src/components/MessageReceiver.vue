@@ -3,13 +3,13 @@
     <div class="columns">
       <div class="column">
         <div class="control">
-          <button class="button is-success is-fullwidth" :disabled="!qClient || isReceiving" @click="receiveMessages()">Receive Messages</button>
+          <button class="button is-success is-fullwidth" :disabled="!qClient || isReceiving" @click="receiveMessages">Receive Messages</button>
         </div>
         <p :class="['content', 'is-medium', { 'is-invisible': !isReceiving }]">Receiving messages from <span class="tag is-success">{{ qClient ? qClient.entityPath : '' }}</span></p>
       </div>
       <div class="column">
         <div class="control">
-          <button class="button is-warning is-fullwidth" :disabled="!isReceiving" @click="stopReceivingMessages()">Stop receiving Messages</button>
+          <button class="button is-warning is-fullwidth" :disabled="!isReceiving" @click="stopReceivingMessages">Stop receiving Messages</button>
         </div>
       </div>
     </div>
