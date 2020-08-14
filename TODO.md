@@ -42,3 +42,4 @@
 * Add button for disconnecting from the service bus (effectively closing the connection)
 * Add button for disconnecting from the queue (effectively closing the connection)
 * Turn on sender button only when the queue has been connected to
+* Dynamically set the height of the message box to show all of the content

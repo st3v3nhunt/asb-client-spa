@@ -9,7 +9,7 @@
       </p>
       <div class="field">
         <div class="control">
-          <textarea class="textarea" placeholder="Enter message" v-model.trim="message"></textarea>
+          <textarea class="textarea" placeholder="Enter message" v-model.trim="message" :rows="rows"></textarea>
         </div>
       </div>
       <div class="field">
@@ -28,6 +28,7 @@ export default {
     return {
       errors: [],
       message: null,
+      rows: 6,
       sender: null
     }
   },
@@ -44,6 +45,8 @@ export default {
         localStorage.setItem('message', this.message)
         this.sendMessage()
       }
+    },
+    messageInputHeight () {
     },
     async sendMessage () {
       if (!this.sender) {
@@ -65,6 +68,18 @@ export default {
         this.sender = this.qClient.createSender()
       } else {
         this.sender = null
+      }
+    },
+    message () {
+      console.log('message has changed')
+      if (this.message) {
+        try {
+          // add 3 to cater for the '{', '}' and a new line
+          this.rows = Object.keys(JSON.parse(this.message)).length + 3
+        } catch (err) {
+          // ignore error
+        }
+        return this.rows
       }
     }
   }
