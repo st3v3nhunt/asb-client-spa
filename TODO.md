@@ -1,9 +1,11 @@
 ## Features
 
+* Disable connection string input once connected to service bus
+* Disable queue name input once connected to queue
+* Review `console.log` statements, is there a standard way of turning logging on or off in the project?
 * Add clear message button to the receiver
 * Add clear message button to the sender
 * Refactor `disableConnectButton` in QueueClient
-* Fix issue with 'subscribed to QUEUE' message when not subscribed
 * Add auto id generation to the sender
 * List out the messages as they are sent
 * Namespace the message against the queue in local storage
@@ -44,3 +46,4 @@
 * Disable 'unsubscribe' button when disconnecting from queue client
 * Add message for service bus being connected
 * Add message for queue client being connected
+* Fix issue with 'subscribed to QUEUE' message when not subscribed
