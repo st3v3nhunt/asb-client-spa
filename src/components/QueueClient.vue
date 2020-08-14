@@ -17,7 +17,7 @@
           <div class="field-body">
             <div class="field">
               <div class="control is-expanded">
-                <input class="input" type="text" v-model.trim="qName" placeholder="Enter a Queue Name">
+                <input class="input" type="text" v-model.trim="qName" placeholder="Enter a Queue Name" :readonly="qClient">
               </div>
             </div>
           </div>
