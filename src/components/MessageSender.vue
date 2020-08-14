@@ -49,7 +49,7 @@ export default {
       if (!this.sender) {
         this.sender = this.qClient.createSender()
       }
-      await this.sender.send({ body: this.message })
+      await this.sender.send({ body: JSON.parse(this.message) })
       console.log('Sending message', this.message)
     }
   },
