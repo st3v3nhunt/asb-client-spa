@@ -16,7 +16,7 @@
         <div class="field-body">
           <div class="field">
             <div class="control is-expanded">
-              <input class="input" type="text" v-model.trim="connectionString" placeholder="Enter a Connection String" :readonly="sbClient">
+              <input class="input" type="text" v-model.trim="connectionString" placeholder="Enter a Connection String" :disabled="sbClient">
             </div>
           </div>
         </div>
