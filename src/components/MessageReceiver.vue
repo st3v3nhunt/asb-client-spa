@@ -3,13 +3,13 @@
     <div class="columns">
       <div class="column">
         <div class="control">
-          <button class="button is-success is-fullwidth" :disabled="!qClient || isReceiving" @click="subscribeToMessages()">Subscribe to Messages</button>
+          <button class="button is-success is-fullwidth" :disabled="!qClient || isReceiving" @click="receiveMessages()">Receive Messages</button>
         </div>
-        <p :class="['content', 'is-medium', { 'is-invisible': !isReceiving }]">Subscribed to <span class="tag is-success">{{ qClient ? qClient.entityPath : '' }}</span></p>
+        <p :class="['content', 'is-medium', { 'is-invisible': !isReceiving }]">Receiving messages from <span class="tag is-success">{{ qClient ? qClient.entityPath : '' }}</span></p>
       </div>
       <div class="column">
         <div class="control">
-          <button class="button is-warning is-fullwidth" :disabled="!isReceiving" @click="unsubscribeToMessages()">Unsubscribe to Messages</button>
+          <button class="button is-warning is-fullwidth" :disabled="!isReceiving" @click="stopReceivingMessages()">Stop receiving Messages</button>
         </div>
       </div>
     </div>
@@ -46,22 +46,22 @@ export default {
     qClient: Object
   },
   methods: {
-    async subscribeToMessages () {
-      console.log('subscribing to messages')
-      this.receiver = this.qClient.createReceiver(ReceiveMode.peekLock)
+    async receiveMessages () {
+      this.receiver = this.qClient.createReceiver(ReceiveMode.receiveAndDelete)
       this.receiver.registerMessageHandler(async (msg) => {
-        console.log('received message', msg)
+        console.log('Received message:', msg)
         this.messages.unshift(msg)
       },
       async (err) => {
-        console.error('error receiving message', err)
+        console.error('Error receiving message:', err)
       })
+      console.log('Receiving messages')
       this.isReceiving = true
     },
-    async unsubscribeToMessages () {
+    async stopReceivingMessages () {
       await this.receiver.close()
       this.isReceiving = false
-      console.log('receiver closed')
+      console.log('Receiver closed')
     }
   },
   watch: {
