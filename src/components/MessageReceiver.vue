@@ -5,7 +5,7 @@
         <div class="control">
           <button class="button is-success is-fullwidth" :disabled="!qClient || isReceiving" @click="subscribeToMessages()">Subscribe to Messages</button>
         </div>
-        <div :class="['content', 'is-medium', { 'is-invisible': !isReceiving }]">Subscribed to <span class="tag is-success">{{ qClient ? qClient.entityPath : '' }}</span></div>
+        <p :class="['content', 'is-medium', { 'is-invisible': !isReceiving }]">Subscribed to <span class="tag is-success">{{ qClient ? qClient.entityPath : '' }}</span></p>
       </div>
       <div class="column">
         <div class="control">
