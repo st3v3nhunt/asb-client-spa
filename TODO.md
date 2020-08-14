@@ -1,19 +1,15 @@
 ## Features
 
-* Disable connection string input once connected to service bus
-* Disable queue name input once connected to queue
-* Review `console.log` statements, is there a standard way of turning logging on or off in the project?
 * Add clear message button to the receiver
-* Add clear message button to the sender
-* Refactor `disableConnectButton` in QueueClient
+* Review `console.log` statements, is there a standard way of turning logging on or off in the project?
 * Add auto id generation to the sender
 * List out the messages as they are sent
+* Add clear message button to the sender
+* Refactor `disableConnectButton` in QueueClient
 * Namespace the message against the queue in local storage
 
 * Add ability to save messages and recall them so there is access to a selection of pre-saved messages
 * Enable the interface to have multiple queues receiving messages, possibly tabs?
-* Add message sending ability
-* Improve the layout (ongoing)
 * Show available queues for the Service Bus
 * Select the queue to use from the list
 * Install Bulma rather than linking to the CDN version
@@ -47,3 +43,7 @@
 * Add message for service bus being connected
 * Add message for queue client being connected
 * Fix issue with 'subscribed to QUEUE' message when not subscribed
+* Disable connection string input once connected to service bus
+* Disable queue name input once connected to queue
+* Add message sending ability
+* Improve the layout (ongoing)
