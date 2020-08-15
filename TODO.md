@@ -2,8 +2,6 @@
 
 * Review `console.log` statements, is there a standard way of turning logging on or off in the project?
 * Add auto id generation to the sender
-* List out the messages as they are sent
-* Add clear message button to the sender
 * Refactor `disableConnectButton` in QueueClient
 * Namespace the message against the queue in local storage
 
@@ -47,3 +45,5 @@
 * Add message sending ability
 * Improve the layout (ongoing)
 * Add clear message button to the receiver
+* List out the messages as they are sent
+* Add clear message button to the sender
