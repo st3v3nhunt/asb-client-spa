@@ -1,6 +1,5 @@
 ## Features
 
-* Add clear message button to the receiver
 * Review `console.log` statements, is there a standard way of turning logging on or off in the project?
 * Add auto id generation to the sender
 * List out the messages as they are sent
@@ -47,3 +46,4 @@
 * Disable queue name input once connected to queue
 * Add message sending ability
 * Improve the layout (ongoing)
+* Add clear message button to the receiver

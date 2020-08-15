@@ -11,6 +11,9 @@
         <div class="control">
           <button class="button is-warning is-fullwidth" :disabled="!isReceiving" @click="stopReceivingMessages">Stop receiving Messages</button>
         </div>
+        <div class="control">
+          <button class="button is-warning is-fullwidth" :disabled="messages.length === 0" @click="clearMessages">Clear Messages</button>
+        </div>
       </div>
     </div>
 
@@ -46,6 +49,9 @@ export default {
     qClient: Object
   },
   methods: {
+    clearMessages () {
+      this.messages = []
+    },
     async receiveMessages () {
       this.receiver = this.qClient.createReceiver(ReceiveMode.receiveAndDelete)
       this.receiver.registerMessageHandler(async (msg) => {
