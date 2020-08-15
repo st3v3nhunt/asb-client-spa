@@ -12,7 +12,7 @@
           <button class="button is-warning is-fullwidth" :disabled="!isReceiving" @click="stopReceivingMessages">Stop receiving Messages</button>
         </div>
         <div class="control">
-          <button class="button is-warning is-fullwidth" :disabled="messages.length === 0" @click="clearMessages">Clear Messages</button>
+          <button class="button is-warning is-fullwidth" :disabled="messages.length === 0" @click="clearMessages">Clear Received Messages</button>
         </div>
       </div>
     </div>
@@ -24,9 +24,7 @@
             <p>MessageId: {{ message.messageId }}. Queue Source: {{ message._context.entityPath }}. Enqueued at: {{ message.enqueuedTimeUtc }}</p>
           </div>
 
-          <div class="message-body">
-            {{ message.body }}
-          </div>
+          <div class="message-body">{{ message.body }}</div>
         </article>
       </div>
     </div>
