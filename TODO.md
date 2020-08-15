@@ -1,5 +1,7 @@
 ## Features
 
+* Add count for the number of messages sent
+* Add count for the number of messages received
 * Review `console.log` statements, is there a standard way of turning logging on or off in the project?
 * Add auto id generation to the sender
 * Refactor `disableConnectButton` in QueueClient
