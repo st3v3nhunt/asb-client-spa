@@ -8,11 +8,15 @@
         <p :class="['content', 'is-medium', { 'is-invisible': !isReceiving }]">Receiving messages from <span class="tag is-success">{{ qClient ? qClient.entityPath : '' }}</span></p>
       </div>
       <div class="column">
-        <div class="control">
-          <button class="button is-warning is-fullwidth" :disabled="!isReceiving" @click="stopReceivingMessages">Stop receiving Messages</button>
+        <div class="field">
+          <div class="control">
+            <button class="button is-warning is-fullwidth" :disabled="!isReceiving" @click="stopReceivingMessages">Stop receiving Messages</button>
+          </div>
         </div>
-        <div class="control">
-          <button class="button is-warning is-fullwidth" :disabled="messages.length === 0" @click="clearMessages">Clear Received Messages</button>
+        <div class="field">
+          <div class="control">
+            <button class="button is-warning is-fullwidth" :disabled="messages.length === 0" @click="clearMessages">Clear Received Messages</button>
+          </div>
         </div>
       </div>
     </div>
