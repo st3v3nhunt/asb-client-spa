@@ -26,6 +26,13 @@
               </div>
             </div>
           </div>
+          <div class="columns">
+            <div class="column">
+              <div class="control">
+                <p :class="{ 'is-invisible': messages.length === 0 }">Messages sent: {{ messages.length }}</p>
+              </div>
+            </div>
+          </div>
         </form>
       </div>
     </div>
@@ -71,9 +78,13 @@ export default {
       if (!this.sender) {
         this.sender = this.qClient.createSender()
       }
-      this.messages.unshift(this.message)
-      await this.sender.send({ body: JSON.parse(this.message) })
-      console.log('Sending message', this.message)
+      try {
+        await this.sender.send({ body: JSON.parse(this.message) })
+        this.messages.unshift(this.message)
+        console.log('Sending message', this.message)
+      } catch (err) {
+        console.error('Error during message sending', err)
+      }
     }
   },
   created () {
