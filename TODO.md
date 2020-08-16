@@ -1,14 +1,14 @@
 ## Features
 
-* Add auto id generation to the sender
-* Review `console.log` statements, is there a standard way of turning logging on or off in the project?
 * Refactor `disableConnectButton` in QueueClient
-* Namespace the message against the queue in local storage
-
-* Add ability to save messages and recall them so there is access to a selection of pre-saved messages
-* Enable the interface to have multiple queues receiving messages, possibly tabs?
+* Add back-end data store to save what currently goes in local storage
 * Show available queues for the Service Bus
 * Select the queue to use from the list
+* Add ability to save messages and recall them so there is access to a selection of pre-saved messages
+* Add ability to specify the constraints for all message properties and dynamically generate them for each message
+* Review `console.log` statements, is there a standard way of turning logging on or off in the project?
+* Namespace the message against the queue in local storage
+* Enable the interface to have multiple queues receiving messages, possibly tabs?
 * Install Bulma rather than linking to the CDN version
 * Add some tests
 
@@ -49,3 +49,4 @@
 * Add clear message button to the sender
 * Add count for the number of messages sent
 * Add count for the number of messages received
+* Add auto id generation to the sender
