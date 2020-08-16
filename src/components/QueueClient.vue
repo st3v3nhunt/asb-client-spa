@@ -4,40 +4,40 @@
       <div class="column">
         <form>
           <p v-if="errors.length">
-            <b>Please correct the following error(s):</b>
-            <ul>
-              <li v-for="error in errors" :key="error">{{ error }}</li>
-            </ul>
+          <b>Please correct the following error(s):</b>
+          <ul>
+            <li v-for="error in errors" :key="error">{{ error }}</li>
+          </ul>
           </p>
 
-        <div class="field is-horizontal">
-          <div class="field-label is-normal">
-            <label class="label">Queue Name</label>
-          </div>
-          <div class="field-body">
-            <div class="field">
-              <div class="control is-expanded">
-                <input class="input" type="text" v-model.trim="qName" placeholder="Enter a Queue Name" :disabled="qClient">
+          <div class="field is-horizontal">
+            <div class="field-label is-normal">
+              <label class="label">Queue Name</label>
+            </div>
+            <div class="field-body">
+              <div class="field">
+                <div class="control is-expanded">
+                  <input class="input" type="text" v-model.trim="qName" placeholder="Enter a Queue Name" :disabled="qClient">
+                </div>
               </div>
             </div>
           </div>
-        </div>
-        <div class="field is-horizontal">
-          <div class="field-label">
-            <!-- Left empty for spacing -->
-          </div>
-          <div class="field-body">
-            <div class="field is-grouped">
-              <div class="control">
-                <button class="button is-success" :disabled="disableConnectButton" @click.prevent="checkForm">Connect</button>
+          <div class="field is-horizontal">
+            <div class="field-label">
+              <!-- Left empty for spacing -->
+            </div>
+            <div class="field-body">
+              <div class="field is-grouped">
+                <div class="control">
+                  <button class="button is-success" :disabled="disableConnectButton" @click.prevent="checkForm">Connect</button>
+                </div>
+                <div class="control">
+                  <button class="button is-warning" :disabled="!qClient" @click.prevent="disconnect">Disconnect</button>
+                </div>
+                <p :class="['content', 'is-medium', { 'is-invisible': !qClient }]">Connected to <span class="tag is-success">{{ qClient ? qClient.entityPath : '' }}</span></p>
               </div>
-              <div class="control">
-                <button class="button is-warning" :disabled="!qClient" @click.prevent="disconnect">Disconnect</button>
-              </div>
-              <p :class="['content', 'is-medium', { 'is-invisible': !qClient }]">Connected to <span class="tag is-success">{{ qClient ? qClient.entityPath : '' }}</span></p>
             </div>
           </div>
-        </div>
         </form>
       </div>
     </div>

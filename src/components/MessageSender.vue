@@ -4,10 +4,10 @@
       <div class="column">
         <form @submit.prevent="checkForm">
           <p v-if="errors.length">
-            <b>Please correct the following error(s):</b>
-            <ul>
-              <li v-for="error in errors" :key="error">{{ error }}</li>
-            </ul>
+          <b>Please correct the following error(s):</b>
+          <ul>
+            <li v-for="error in errors" :key="error">{{ error }}</li>
+          </ul>
           </p>
           <div class="field">
             <div class="control">
@@ -31,9 +31,9 @@
     </div>
     <div class="columns">
       <div class="column">
-      <article v-for="(message, index) in messages" :key="index" class="message is-small">
-        <div class="message-body">{{ message }}</div>
-      </article>
+        <article v-for="(message, index) in messages" :key="index" class="message is-small">
+          <div class="message-body">{{ message }}</div>
+        </article>
       </div>
     </div>
   </div>

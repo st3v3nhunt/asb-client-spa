@@ -1,44 +1,44 @@
 <template>
   <div class="columns">
-  <div class="column">
-    <form>
-      <p v-if="errors.length">
+    <div class="column">
+      <form>
+        <p v-if="errors.length">
         <b>Please correct the following error(s):</b>
         <ul>
           <li v-for="error in errors" :key="error">{{ error }}</li>
         </ul>
-      </p>
+        </p>
 
-      <div class="field is-horizontal">
-        <div class="field-label is-normal">
-          <label class="label">Connection String</label>
-        </div>
-        <div class="field-body">
-          <div class="field">
-            <div class="control is-expanded">
-              <input class="input" type="text" v-model.trim="connectionString" placeholder="Enter a Connection String" :disabled="sbClient">
+        <div class="field is-horizontal">
+          <div class="field-label is-normal">
+            <label class="label">Connection String</label>
+          </div>
+          <div class="field-body">
+            <div class="field">
+              <div class="control is-expanded">
+                <input class="input" type="text" v-model.trim="connectionString" placeholder="Enter a Connection String" :disabled="sbClient">
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      <div class="field is-horizontal">
-        <div class="field-label">
-          <!-- Left empty for spacing -->
-        </div>
-        <div class="field-body">
-          <div class="field is-grouped">
-            <div class="control">
-              <button class="button is-success" :disabled="sbClient" @click.prevent="checkForm">Connect</button>
+        <div class="field is-horizontal">
+          <div class="field-label">
+            <!-- Left empty for spacing -->
+          </div>
+          <div class="field-body">
+            <div class="field is-grouped">
+              <div class="control">
+                <button class="button is-success" :disabled="sbClient" @click.prevent="checkForm">Connect</button>
+              </div>
+              <div class="control">
+                <button class="button is-warning" :disabled="!sbClient" @click.prevent="disconnect">Disconnect</button>
+              </div>
+              <p :class="['content', 'is-medium', { 'is-invisible': !sbClient }]">Connected to <span class="tag is-success">{{ sbClient ? sbClient.name : '' }}</span></p>
             </div>
-            <div class="control">
-              <button class="button is-warning" :disabled="!sbClient" @click.prevent="disconnect">Disconnect</button>
-            </div>
-            <p :class="['content', 'is-medium', { 'is-invisible': !sbClient }]">Connected to <span class="tag is-success">{{ sbClient ? sbClient.name : '' }}</span></p>
           </div>
         </div>
-      </div>
-    </form>
-  </div>
+      </form>
+    </div>
   </div>
 </template>
 
