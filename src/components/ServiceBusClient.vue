@@ -52,8 +52,8 @@ export default {
   },
   created () {
     console.log('ServiceBusClient component created')
-    if (localStorage.getItem('connectionString')) {
-      this.connectionString = localStorage.getItem('connectionString')
+    this.connectionString = localStorage.getItem('connectionString')
+    if (this.connectionString) {
       this.connectToServiceBus()
     }
   },

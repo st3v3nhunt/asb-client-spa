@@ -121,12 +121,7 @@ export default {
   },
   created () {
     console.log('QueueClient component created')
-    if (localStorage.getItem('qName')) {
-      this.qName = localStorage.getItem('qName')
-    }
+    this.qName = localStorage.getItem('qName')
   }
 }
 </script>
-
-<style>
-</style>

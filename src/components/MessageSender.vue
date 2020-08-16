@@ -11,7 +11,12 @@
           </p>
           <div class="field">
             <div class="control">
-              <textarea class="textarea" placeholder="Enter message" v-model.trim="message" rows="8"></textarea>
+              <textarea class="textarea" placeholder="Enter message to send" v-model.trim="message" rows="8"></textarea>
+            </div>
+          </div>
+          <div class="field">
+            <div class="control">
+              <input class="input" type="text" placeholder="Enter UUID properties" v-model.trim="uuidProps">
             </div>
           </div>
           <div class="columns">
@@ -47,6 +52,18 @@
 </template>
 
 <script>
+const { v1: uuidv1 } = require('uuid')
+
+function addUuidPropsToMessage (rawMessage, uuidProps) {
+  const message = JSON.parse(rawMessage)
+  if (uuidProps) {
+    uuidProps.split(',').map(x => x.trim()).forEach(prop => {
+      message[prop] = uuidv1()
+    })
+  }
+  return message
+}
+
 export default {
   name: 'MessageSender',
   data () {
@@ -54,7 +71,8 @@ export default {
       errors: [],
       message: null,
       messages: [],
-      sender: null
+      sender: null,
+      uuidProps: null
     }
   },
   props: {
@@ -64,10 +82,11 @@ export default {
     checkForm () {
       this.errors = []
       // TODO: add some validation
-      console.log('validation pending...')
+      console.log('Validation pending...')
 
       if (!this.errors.length) {
         localStorage.setItem('message', this.message)
+        localStorage.setItem('uuidProps', this.uuidProps)
         this.sendMessage()
       }
     },
@@ -79,9 +98,10 @@ export default {
         this.sender = this.qClient.createSender()
       }
       try {
-        await this.sender.send({ body: JSON.parse(this.message) })
-        this.messages.unshift(this.message)
-        console.log('Sending message', this.message)
+        const messageToSend = addUuidPropsToMessage(this.message, this.uuidProps)
+        await this.sender.send({ body: messageToSend })
+        this.messages.unshift(messageToSend)
+        console.log('Sending message', messageToSend)
       } catch (err) {
         console.error('Error during message sending', err)
       }
@@ -92,6 +112,7 @@ export default {
     if (localStorage.getItem('message')) {
       this.message = localStorage.getItem('message')
     }
+    this.uuidProps = localStorage.getItem('uuidProps')
   },
   watch: {
     async qClient () {
@@ -104,6 +125,3 @@ export default {
   }
 }
 </script>
-
-<style>
-</style>
