@@ -10,9 +10,6 @@
         </p>
 
         <div class="field is-horizontal">
-          <div class="field-label is-normal">
-            <label class="label">Connection String</label>
-          </div>
           <div class="field-body">
             <div class="field">
               <div class="control is-expanded">
@@ -22,9 +19,6 @@
           </div>
         </div>
         <div class="field is-horizontal">
-          <div class="field-label">
-            <!-- Left empty for spacing -->
-          </div>
           <div class="field-body">
             <div class="field is-grouped">
               <div class="control">
