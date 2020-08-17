@@ -112,7 +112,7 @@ export default {
   },
   watch: {
     async sbClient () {
-      if (this.sbClient) {
+      if (this.sbClient && this.qName) {
         this.connectToQueue()
       } else {
         await this.disconnect()
