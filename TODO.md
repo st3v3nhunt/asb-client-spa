@@ -1,5 +1,6 @@
 ## Features
 
+* Get this deployed to a cloud service
 * Refactor `disableConnectButton` in QueueClient
 * Add back-end data store to save what currently goes in local storage
 * Show available queues for the Service Bus
