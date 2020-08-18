@@ -1,6 +1,5 @@
 ## Features
 
-* Get this deployed to a cloud service
 * Refactor `disableConnectButton` in QueueClient
 * Add back-end data store to save what currently goes in local storage
 * Show available queues for the Service Bus
@@ -51,3 +50,5 @@
 * Add count for the number of messages sent
 * Add count for the number of messages received
 * Add auto id generation to the sender
+* Get this deployed to a cloud service
+* Update README
