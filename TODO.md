@@ -14,6 +14,7 @@
 
 ## Error Handling
 
+* Handle unable to connect to service bus
 * Handle unknown queue (or ensure only valid queues can be selected)
 * Share the error handling code on the form - maybe just a component with a template?
 * Improve validation on the input for 'Connection String' (check for Endpoint, SharedAccessKeyName, SharedAccessKey)
