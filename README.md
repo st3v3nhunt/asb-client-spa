@@ -8,11 +8,17 @@
 
 ## Project setup
 
-Pull the code down
-(`git clone https://github.com/st3v3nhunt/asb-client-spa.git`) and install
-packages (`npm install`).
+Pull the code down and install packages
+```
+git clone https://github.com/st3v3nhunt/asb-client-spa.git
+cd asb-client-spa
+npm install
+```
 
-Run the development server with hot-reloads - `npm run serve`.
+Run the development server with hot-reloads
+```
+npm run serve
+```
 
 Start developing...
 
@@ -33,7 +39,7 @@ Currently [GitHub Pages](https://pages.github.com/) is used. The packaged site
 it pushed to the
 [`gh-pages`](https://github.com/st3v3nhunt/asb-client-spa/tree/gh-pages) branch
 of this repo and is served at
-[https://st3v3nhunt.github.io/asb-client-spa/](https://st3v3nhunt.github.io/asb-client-spa/).
+[st3v3nhunt.github.io/asb-client-spa/](https://st3v3nhunt.github.io/asb-client-spa/).
 
 ### Testing prior to deployment
 
@@ -43,9 +49,12 @@ development environment and the deployed environment. However, it is possible
 to run a test environment based on the packaged site that is created during the
 build step in the deployment job.
 
-This is done by installing [serve](https://www.npmjs.com/package/serve) (`npm
-install -g serve`) and running `npm run build` which will generate the site and
-output it into `./dist` followed by running it with serve - `serve -s dist`.
+This is done by first installing [serve](https://www.npmjs.com/package/serve)
+(`npm install -g serve`), running the build and serving the site
+```
+npm run build
+serve -s dist
+```
 
 ## Customize configuration
 
