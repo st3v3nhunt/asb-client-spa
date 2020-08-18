@@ -28,9 +28,12 @@ Development should be done on a feature branch so it can be pushed to the
 remote where a PR can be created against the default branch. The default branch
 is protected and only approved PRs can be merged into it.
 
+PRs have a specific build process as detailed in
+[main.yml](./github/workflows/main.yml).
+
 ## Deployment
 
-When a change is pushed to the default branch the
+When a change is pushed to the default branch (when a PR is merged) the
 [deploy action](.github/workflows/deploy.yml) will run.
 
 `npm run build` runs, packaging the site into `./dist` so it can be deployed to
