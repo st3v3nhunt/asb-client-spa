@@ -27,7 +27,7 @@
               <div class="control">
                 <button class="button is-warning" :disabled="!sbClient" @click.prevent="disconnect">Disconnect</button>
               </div>
-              <p :class="['content', 'is-medium', { 'is-invisible': !sbClient }]">Connected to <span class="tag is-success">{{ sbClient ? sbClient.name : '' }}</span></p>
+              <p class="content is-medium" :class="!sbClient && 'is-invisible'">Connected to <span class="tag is-success">{{ sbClient ? sbClient.name : '' }}</span></p>
             </div>
           </div>
         </div>

@@ -34,7 +34,7 @@
           <div class="columns">
             <div class="column">
               <div class="control">
-                <p :class="{ 'is-invisible': messages.length === 0 }">Messages sent: {{ messages.length }}</p>
+                <p :class="messages.length === 0 && 'is-invisible'">Messages sent: {{ messages.length }}</p>
               </div>
             </div>
           </div>
