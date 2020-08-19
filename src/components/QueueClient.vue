@@ -28,7 +28,7 @@
                 <div class="control">
                   <button class="button is-warning" :disabled="!qClient" @click.prevent="disconnect">Disconnect</button>
                 </div>
-                <p :class="['content', 'is-medium', { 'is-invisible': !qClient }]">Connected to <span class="tag is-success">{{ qClient ? qClient.entityPath : '' }}</span></p>
+                <p class="content is-medium" :class="!qClient && 'is-invisible'">Connected to <span class="tag is-success">{{ qClient ? qClient.entityPath : '' }}</span></p>
               </div>
             </div>
           </div>
