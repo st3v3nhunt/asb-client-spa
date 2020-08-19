@@ -1,5 +1,5 @@
 {
-  "name": "my-first-vue",
+  "name": "azure-service-bus-client-spa",
   "version": "1.0.0",
   "private": true,
   "scripts": {
