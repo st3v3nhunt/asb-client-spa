@@ -3,15 +3,18 @@
     <div class="columns">
       <div class="column">
         <form>
+        <div class="field">
           <p v-if="errors.length">
           <b>Please correct the following error(s):</b>
           <ul>
             <li
-              v-for="error in errors"
-              :key="error"
+              class="help is-danger"
+              v-for="(error, index) in errors"
+              :key="index"
             >{{ error }}</li>
           </ul>
           </p>
+        </div>
 
           <div class="field is-horizontal">
             <div class="field-body">

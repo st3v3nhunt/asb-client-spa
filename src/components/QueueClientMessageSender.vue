@@ -3,15 +3,18 @@
     <div class="columns">
       <div class="column">
         <form @submit.prevent="checkForm">
+        <div class="field">
           <p v-if="errors.length">
           <b>Please correct the following error(s):</b>
           <ul>
             <li
-              v-for="error in errors"
-              :key="error"
-            >{{ error }}</li>
+              class="help is-danger"
+              v-for="(error, index) in errors"
+              :key="index"
+              >{{ error }}</li>
           </ul>
           </p>
+        </div>
           <div class="field">
             <div class="control">
               <textarea
@@ -130,6 +133,7 @@ export default {
         this.messages.unshift(messageToSend)
         console.log('Sending message', messageToSend)
       } catch (err) {
+        this.errors.push(err)
         console.error('Error during message sending', err)
       }
     }
