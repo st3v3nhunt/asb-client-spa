@@ -1,6 +1,5 @@
 ## Features
 
-* Review and apply (where appropriate) [style guide](https://vuejs.org/v2/style-guide/) suggestions
 * Refactor `disableConnectButton` in QueueClient
 * Add back-end data store to save what currently goes in local storage
 * Show available queues for the Service Bus
@@ -56,3 +55,4 @@
 * Update README
 * Look at options for improving commits to `gh-pages`
 * Update page title from `my-first-vue`
+* Review and apply (where appropriate) [style guide](https://vuejs.org/v2/style-guide/) suggestions

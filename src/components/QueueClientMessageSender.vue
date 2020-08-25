@@ -89,7 +89,8 @@ function addUuidPropsToMessage (rawMessage, uuidProps) {
 }
 
 export default {
-  name: 'MessageSender',
+  name: 'QueueClientMessageSender',
+
   data () {
     return {
       errors: [],
@@ -99,9 +100,11 @@ export default {
       uuidProps: null
     }
   },
+
   props: {
     qClient: Object
   },
+
   methods: {
     checkForm () {
       this.errors = []
@@ -131,13 +134,15 @@ export default {
       }
     }
   },
+
   created () {
-    console.log('MessageSender component created')
+    console.log('QueueClientMessageSender component created')
     if (localStorage.getItem('message')) {
       this.message = localStorage.getItem('message')
     }
     this.uuidProps = localStorage.getItem('uuidProps')
   },
+
   watch: {
     async qClient () {
       if (this.qClient) {

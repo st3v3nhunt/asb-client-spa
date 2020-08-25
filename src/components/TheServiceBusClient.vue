@@ -62,8 +62,10 @@ import { ServiceBusClient } from '@azure/service-bus'
 
 export default {
   name: 'TheServiceBusClient',
+
   components: {
   },
+
   data () {
     return {
       errors: [],
@@ -71,6 +73,7 @@ export default {
       sbClient: null
     }
   },
+
   created () {
     console.log('TheServiceBusClient component created')
     this.connectionString = localStorage.getItem('connectionString')
@@ -78,6 +81,7 @@ export default {
       this.connectToServiceBus()
     }
   },
+
   methods: {
     checkForm () {
       this.errors = []

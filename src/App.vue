@@ -2,29 +2,32 @@
   <section class="section">
     <div class="container is-fluid">
       <the-service-bus-client
-        @create:TheserviceBusClient="setServiceBusClient"
+        @create:serviceBusClient="setServiceBusClient"
         @destroy:serviceBusClient="destroyServiceBusClient"
         />
-      <queue-client :sbClient="sbClient"/>
+      <service-bus-queue-client :sbClient="sbClient"/>
     </div>
   </section>
 </template>
 
 <script>
-import QueueClient from '@/components/QueueClient.vue'
+import ServiceBusQueueClient from '@/components/ServiceBusQueueClient.vue'
 import TheServiceBusClient from '@/components/TheServiceBusClient.vue'
 
 export default {
   name: 'App',
+
   components: {
-    QueueClient,
+    ServiceBusQueueClient,
     TheServiceBusClient
   },
+
   data () {
     return {
       sbClient: null
     }
   },
+
   methods: {
     destroyServiceBusClient () {
       this.sbClient = null
@@ -36,6 +39,3 @@ export default {
   }
 }
 </script>
-
-<style>
-</style>
