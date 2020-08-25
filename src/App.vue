@@ -1,8 +1,8 @@
 <template>
   <section class="section">
     <div class="container is-fluid">
-      <service-bus-client
-        @create:serviceBusClient="setServiceBusClient"
+      <the-service-bus-client
+        @create:TheserviceBusClient="setServiceBusClient"
         @destroy:serviceBusClient="destroyServiceBusClient"
         />
       <queue-client :sbClient="sbClient"/>
@@ -12,13 +12,13 @@
 
 <script>
 import QueueClient from '@/components/QueueClient.vue'
-import ServiceBusClient from '@/components/ServiceBusClient.vue'
+import TheServiceBusClient from '@/components/TheServiceBusClient.vue'
 
 export default {
   name: 'App',
   components: {
     QueueClient,
-    ServiceBusClient
+    TheServiceBusClient
   },
   data () {
     return {

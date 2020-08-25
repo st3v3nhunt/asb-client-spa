@@ -5,7 +5,10 @@
         <p v-if="errors.length">
         <b>Please correct the following error(s):</b>
         <ul>
-          <li v-for="error in errors" :key="error">{{ error }}</li>
+          <li
+            v-for="error in errors"
+            :key="error"
+          >{{ error }}</li>
         </ul>
         </p>
 
@@ -13,7 +16,13 @@
           <div class="field-body">
             <div class="field">
               <div class="control is-expanded">
-                <input class="input" type="text" v-model.trim="connectionString" placeholder="Enter a Connection String" :disabled="sbClient">
+                <input
+                  class="input"
+                  type="text"
+                  v-model.trim="connectionString"
+                  placeholder="Enter a Connection String"
+                  :disabled="sbClient"
+                >
               </div>
             </div>
           </div>
@@ -22,12 +31,24 @@
           <div class="field-body">
             <div class="field is-grouped">
               <div class="control">
-                <button class="button is-success" :disabled="sbClient" @click.prevent="checkForm">Connect</button>
+                <button
+                  class="button is-success"
+                  :disabled="sbClient"
+                  @click.prevent="checkForm"
+                >Connect</button>
               </div>
               <div class="control">
-                <button class="button is-warning" :disabled="!sbClient" @click.prevent="disconnect">Disconnect</button>
+                <button
+                  class="button is-warning"
+                  :disabled="!sbClient"
+                  @click.prevent="disconnect"
+                >Disconnect</button>
               </div>
-              <p class="content is-medium" :class="!sbClient && 'is-invisible'">Connected to <span class="tag is-success">{{ sbClient ? sbClient.name : '' }}</span></p>
+              <p
+                class="content is-medium"
+                :class="!sbClient && 'is-invisible'"
+              >Connected to <span class="tag is-success"> {{ sbClient ? sbClient.name : '' }} </span>
+              </p>
             </div>
           </div>
         </div>
@@ -40,7 +61,7 @@
 import { ServiceBusClient } from '@azure/service-bus'
 
 export default {
-  name: 'ServiceBusClientConnection',
+  name: 'TheServiceBusClient',
   components: {
   },
   data () {
@@ -51,7 +72,7 @@ export default {
     }
   },
   created () {
-    console.log('ServiceBusClient component created')
+    console.log('TheServiceBusClient component created')
     this.connectionString = localStorage.getItem('connectionString')
     if (this.connectionString) {
       this.connectToServiceBus()
