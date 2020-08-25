@@ -154,6 +154,12 @@ export default {
       } else {
         this.sender = null
       }
+    },
+    sender () {
+      if (!this.sender) {
+        this.errors = []
+        this.messages = []
+      }
     }
   }
 }
