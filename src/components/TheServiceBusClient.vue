@@ -47,7 +47,7 @@
               <p
                 class="content is-medium"
                 :class="!sbClient && 'is-invisible'"
-              >Connected to <span class="tag is-success"> {{ sbClient ? sbClient.name : '' }} </span>
+              >Connected to <span class="tag is-success">{{ sbClient ? sbClient.name : '' }}</span>
               </p>
             </div>
           </div>
