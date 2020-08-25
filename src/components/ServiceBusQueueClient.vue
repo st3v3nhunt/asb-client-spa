@@ -3,18 +3,18 @@
     <div class="columns">
       <div class="column">
         <form>
-        <div class="field">
-          <p v-if="errors.length">
-          <b>Please correct the following error(s):</b>
-          <ul>
-            <li
-              class="help is-danger"
-              v-for="(error, index) in errors"
-              :key="index"
-            >{{ error }}</li>
-          </ul>
-          </p>
-        </div>
+          <div class="field">
+            <p v-if="errors.length">
+            <b>Please correct the following error(s):</b>
+            <ul>
+              <li
+                class="help is-danger"
+                v-for="(error, index) in errors"
+                :key="index"
+                >{{ error }}</li>
+            </ul>
+            </p>
+          </div>
 
           <div class="field is-horizontal">
             <div class="field-body">
@@ -26,7 +26,7 @@
                     v-model.trim="qName"
                     placeholder="Enter a Queue Name"
                     :disabled="qClient"
-                  >
+                    >
                 </div>
               </div>
             </div>
@@ -39,19 +39,19 @@
                     class="button is-success"
                     :disabled="disableConnectButton"
                     @click.prevent="checkForm"
-                  >Connect</button>
+                    >Connect</button>
                 </div>
                 <div class="control">
                   <button
                     class="button is-warning"
                     :disabled="!qClient"
                     @click.prevent="disconnect"
-                  >Disconnect</button>
+                    >Disconnect</button>
                 </div>
                 <p
                   class="content is-medium"
                   :class="!qClient && 'is-invisible'"
-                >Connected to <span class="tag is-success">{{ qClient ? qClient.entityPath : '' }}</span></p>
+                  >Connected to <span class="tag is-success">{{ qClient ? qClient.entityPath : '' }}</span></p>
               </div>
             </div>
           </div>

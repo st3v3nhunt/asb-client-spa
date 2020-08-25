@@ -3,16 +3,16 @@
     <div class="column">
       <form>
         <div class="field">
-        <p v-if="errors.length">
-        <b>Please correct the following error(s):</b>
-        <ul>
-          <li
-            class="help is-danger"
-            v-for="(error, index) in errors"
-            :key="index"
-          >{{ error }}</li>
-        </ul>
-        </p>
+          <p v-if="errors.length">
+          <b>Please correct the following error(s):</b>
+          <ul>
+            <li
+              class="help is-danger"
+              v-for="(error, index) in errors"
+              :key="index"
+              >{{ error }}</li>
+          </ul>
+          </p>
         </div>
 
         <div class="field is-horizontal">
@@ -25,7 +25,7 @@
                   v-model.trim="connectionString"
                   placeholder="Enter a Connection String"
                   :disabled="sbClient"
-                >
+                  >
               </div>
             </div>
           </div>
@@ -38,19 +38,19 @@
                   class="button is-success"
                   :disabled="sbClient"
                   @click.prevent="checkForm"
-                >Connect</button>
+                  >Connect</button>
               </div>
               <div class="control">
                 <button
                   class="button is-warning"
                   :disabled="!sbClient"
                   @click.prevent="disconnect"
-                >Disconnect</button>
+                  >Disconnect</button>
               </div>
               <p
                 class="content is-medium"
                 :class="!sbClient && 'is-invisible'"
-              >Connected to <span class="tag is-success">{{ sbClient ? sbClient.name : '' }}</span>
+                >Connected to <span class="tag is-success">{{ sbClient ? sbClient.name : '' }}</span>
               </p>
             </div>
           </div>
