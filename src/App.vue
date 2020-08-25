@@ -5,20 +5,20 @@
         @create:serviceBusClient="setServiceBusClient"
         @destroy:serviceBusClient="destroyServiceBusClient"
         />
-      <queue-client :sbClient="sbClient"/>
+      <service-bus-queue-client :sbClient="sbClient"/>
     </div>
   </section>
 </template>
 
 <script>
-import QueueClient from '@/components/QueueClient.vue'
+import ServiceBusQueueClient from '@/components/ServiceBusQueueClient.vue'
 import TheServiceBusClient from '@/components/TheServiceBusClient.vue'
 
 export default {
   name: 'App',
 
   components: {
-    QueueClient,
+    ServiceBusQueueClient,
     TheServiceBusClient
   },
 

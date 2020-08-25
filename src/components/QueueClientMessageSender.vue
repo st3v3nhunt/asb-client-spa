@@ -89,7 +89,7 @@ function addUuidPropsToMessage (rawMessage, uuidProps) {
 }
 
 export default {
-  name: 'MessageSender',
+  name: 'QueueClientMessageSender',
 
   data () {
     return {
@@ -136,7 +136,7 @@ export default {
   },
 
   created () {
-    console.log('MessageSender component created')
+    console.log('QueueClientMessageSender component created')
     if (localStorage.getItem('message')) {
       this.message = localStorage.getItem('message')
     }

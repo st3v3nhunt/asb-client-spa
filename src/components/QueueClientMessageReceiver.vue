@@ -64,7 +64,7 @@
 import { ReceiveMode } from '@azure/service-bus'
 
 export default {
-  name: 'MessageReceiver',
+  name: 'QueueClientMessageReceiver',
 
   data () {
     return {

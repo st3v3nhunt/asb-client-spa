@@ -57,25 +57,25 @@
     </div>
     <div class="columns">
       <div class="column">
-        <message-receiver :qClient="qClient"/>
+        <queue-client-message-receiver :qClient="qClient"/>
       </div>
       <div class="column">
-        <message-sender :qClient="qClient"/>
+        <queue-client-message-sender :qClient="qClient"/>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import MessageReceiver from '@/components/MessageReceiver.vue'
-import MessageSender from '@/components/MessageSender.vue'
+import QueueClientMessageReceiver from '@/components/QueueClientMessageReceiver.vue'
+import QueueClientMessageSender from '@/components/QueueClientMessageSender.vue'
 
 export default {
-  name: 'QueueClient',
+  name: 'ServiceBusQueueClient',
 
   components: {
-    MessageReceiver,
-    MessageSender
+    QueueClientMessageReceiver,
+    QueueClientMessageSender
   },
 
   data () {
@@ -99,12 +99,12 @@ export default {
 
       if (!this.errors.length) {
         localStorage.setItem('qName', this.qName)
-        this.connectToQueue()
+        this.createQueueClient()
       }
     },
-    connectToQueue () {
+    createQueueClient () {
       this.qClient = this.sbClient.createQueueClient(this.qName)
-      console.log('Connected to QueueClient')
+      console.log('Created QueueClient')
     },
     async disconnect () {
       if (this.qClient) {
@@ -139,7 +139,7 @@ export default {
   watch: {
     async sbClient () {
       if (this.sbClient && this.qName) {
-        this.connectToQueue()
+        this.createQueueClient()
       } else {
         await this.disconnect()
       }
@@ -147,7 +147,7 @@ export default {
   },
 
   created () {
-    console.log('QueueClient component created')
+    console.log('ServiceBusQueueClient component created')
     this.qName = localStorage.getItem('qName')
   }
 }
