@@ -57,7 +57,7 @@
           <div class="columns">
             <div class="column">
               <div class="control">
-                <p :class="messages.length === 0 && 'is-invisible'">Messages sent: {{ messages.length }}</p>
+                <p :class="messages.length === 0 && 'is-invisible'">Messages sent to <span class="tag is-success">{{ qClient && qClient.entityPath }}</span>: {{ messages.length }}</p>
               </div>
             </div>
           </div>
