@@ -16,15 +16,18 @@ import TheServiceBusClient from '@/components/TheServiceBusClient.vue'
 
 export default {
   name: 'App',
+
   components: {
     QueueClient,
     TheServiceBusClient
   },
+
   data () {
     return {
       sbClient: null
     }
   },
+
   methods: {
     destroyServiceBusClient () {
       this.sbClient = null

@@ -72,10 +72,12 @@ import MessageSender from '@/components/MessageSender.vue'
 
 export default {
   name: 'QueueClient',
+
   components: {
     MessageReceiver,
     MessageSender
   },
+
   data () {
     return {
       errors: [],
@@ -83,9 +85,11 @@ export default {
       qName: null
     }
   },
+
   props: {
     sbClient: Object
   },
+
   methods: {
     checkForm () {
       this.errors = []
@@ -112,6 +116,7 @@ export default {
       }
     }
   },
+
   computed: {
     disableConnectButton () {
       if (this.sbClient && this.qClient) {
@@ -130,6 +135,7 @@ export default {
       return true
     }
   },
+
   watch: {
     async sbClient () {
       if (this.sbClient && this.qName) {
@@ -139,6 +145,7 @@ export default {
       }
     }
   },
+
   created () {
     console.log('QueueClient component created')
     this.qName = localStorage.getItem('qName')

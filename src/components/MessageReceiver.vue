@@ -65,6 +65,7 @@ import { ReceiveMode } from '@azure/service-bus'
 
 export default {
   name: 'MessageReceiver',
+
   data () {
     return {
       isReceiving: false,
@@ -72,9 +73,11 @@ export default {
       receiver: null
     }
   },
+
   props: {
     qClient: Object
   },
+
   methods: {
     clearMessages () {
       this.messages = []
@@ -97,6 +100,7 @@ export default {
       console.log('Receiver closed')
     }
   },
+
   watch: {
     qClient () {
       if (!this.qClient) {
