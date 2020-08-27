@@ -105,9 +105,29 @@ export default {
         this.createQueueClient()
       }
     },
-    createQueueClient () {
-      this.qClient = this.sbClient.createQueueClient(this.qName)
-      console.log('Created QueueClient')
+    async createQueueClient () {
+      try {
+        const qClient = this.sbClient.createQueueClient(this.qName)
+        await qClient.peek()
+        this.qClient = qClient
+        console.log('Peeked message successfully. Both Service Bus Client and Queue Client are valid.')
+      } catch (err) {
+        const errorName = err.name
+        // TODO: Emit service bus errors and deal with them in the ServiceBusClient
+        switch (errorName) {
+          case 'ServiceCommunicationError':
+            this.errors.push(`Service Bus "${this.sbClient.name}" is invalid. Please check the connection string. Additional information - ${err}`)
+            break
+          case 'MessagingEntityNotFoundError':
+            this.errors.push(`Queue "${this.qName}" is invalid. Does it exist on the service bus? Additional information - ${err}`)
+            break
+          case 'UnauthorizedError':
+            this.errors.push(`Connection String is invalid. Additional information - ${err}`)
+            break
+          default:
+            this.errors.push(err)
+        }
+      }
     },
     async disconnect () {
       if (this.qClient) {
@@ -144,6 +164,7 @@ export default {
       if (this.sbClient && this.qName) {
         this.createQueueClient()
       } else {
+        this.errors = []
         await this.disconnect()
       }
     }
