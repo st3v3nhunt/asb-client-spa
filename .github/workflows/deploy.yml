@@ -6,7 +6,7 @@ on:
       - master
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
@@ -27,3 +27,8 @@ jobs:
         publish_dir: ./dist
         user_name: 'github-actions[bot]'
         user_email: 'github-actions[bot]@users.noreply.github.com'
+    - name: Notify Slack
+      uses: rtCamp/action-slack-notify@master
+      env:
+        MSG_MINIMAL: true
+        SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}

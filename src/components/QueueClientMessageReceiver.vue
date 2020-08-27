@@ -7,17 +7,17 @@
             class="button is-success is-fullwidth"
             :disabled="!qClient || isReceiving"
             @click="receiveMessages"
-          >Receive Messages</button>
+            >Receive Messages</button>
         </div>
         <p
           class="content"
           :class="!isReceiving && 'is-invisible'"
-        >Receiving messages from <span class="tag is-success">{{ qClient ? qClient.entityPath : '' }}</span>
+          >Receiving messages from <span class="tag is-success">{{ qClient ? qClient.entityPath : '' }}</span>
         </p>
         <p
           class="content"
           :class="messages.length === 0 && 'is-invisible'"
-        >Messages received: {{ messages.length }}</p>
+          >Messages received: {{ messages.length }}</p>
       </div>
       <div class="column">
         <div class="field">
@@ -26,15 +26,15 @@
               class="button is-warning is-fullwidth"
               :disabled="!isReceiving"
               @click="stopReceivingMessages"
-            >Stop receiving Messages</button>
+              >Stop receiving Messages</button>
           </div>
         </div>
         <div class="field">
           <div class="control">
             <button
-                class="button is-warning is-fullwidth"
-                :disabled="messages.length === 0"
-                @click="clearMessages"
+              class="button is-warning is-fullwidth"
+              :disabled="messages.length === 0"
+              @click="clearMessages"
               >Clear Received Messages</button>
           </div>
         </div>
@@ -48,7 +48,7 @@
           :key="message.messageId"
           class="message is-small"
           :class="index === 0 ? 'is-info' : 'is-dark'"
-        >
+          >
           <div class="message-header">
             <p>MessageId: {{ message.messageId }}. Queue Source: {{ message._context.entityPath }}. Enqueued at: {{ message.enqueuedTimeUtc }}</p>
           </div>
