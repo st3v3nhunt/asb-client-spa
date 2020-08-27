@@ -1,12 +1,13 @@
 ## Features
 
-* Refactor `disableConnectButton` in QueueClient
+* Refactor `disableConnectButton` in Queue Client
+* Emit Service Bus errors from SB Queue Client to show them against connection string
+* Is there a standard way of turning logging on or off in the project?
 * Add back-end data store to save what currently goes in local storage
 * Show available queues for the Service Bus
 * Select the queue to use from the list
 * Add ability to save messages and recall them so there is access to a selection of pre-saved messages
 * Add ability to specify the constraints for all message properties and dynamically generate them for each message
-* Review `console.log` statements, is there a standard way of turning logging on or off in the project?
 * Namespace the message against the queue in local storage
 * Enable the interface to have multiple queues receiving messages, possibly tabs?
 * Install Bulma rather than linking to the CDN version
@@ -14,8 +15,6 @@
 
 ## Error Handling
 
-* Handle unable to connect to service bus
-* Handle unknown queue (or ensure only valid queues can be selected)
 * Share the error handling code on the form - maybe just a component with a template?
 * Improve validation on the input for 'Connection String' (check for Endpoint, SharedAccessKeyName, SharedAccessKey)
 * Add errors to each element along with summary above them all
@@ -57,3 +56,6 @@
 * Update page title from `my-first-vue`
 * Review and apply (where appropriate) [style guide](https://vuejs.org/v2/style-guide/) suggestions
 * Add notification to Slack for builds
+* Handle unable to connect to service bus
+* Review `console.log` statements
+* Handle unknown queues
