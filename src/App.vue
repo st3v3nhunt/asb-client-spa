@@ -31,7 +31,7 @@ export default {
   methods: {
     destroyServiceBusClient () {
       this.sbClient = null
-      console.log('Destroying ServiceBusClient')
+      this.$log.info('Destroying ServiceBusClient')
     },
     setServiceBusClient (sbClient) {
       this.sbClient = sbClient

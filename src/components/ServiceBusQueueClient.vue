@@ -110,7 +110,7 @@ export default {
         const qClient = this.sbClient.createQueueClient(this.qName)
         await qClient.peek()
         this.qClient = qClient
-        console.log('Peeked message successfully. Both Service Bus Client and Queue Client are valid.')
+        this.$log.info('Peeked message successfully. Both Service Bus Client and Queue Client are valid.')
       } catch (err) {
         const errorName = err.name
         // TODO: Emit service bus errors and deal with them in the ServiceBusClient
@@ -133,9 +133,9 @@ export default {
       if (this.qClient) {
         await this.qClient.close()
         this.qClient = null
-        console.log('Disconneted QueueClient')
+        this.$log.info('Disconneted QueueClient')
       } else {
-        console.log('QueueClient did not exist')
+        this.$log.info('QueueClient did not exist')
       }
     }
   },
@@ -143,18 +143,18 @@ export default {
   computed: {
     disableConnectButton () {
       if (this.sbClient && this.qClient) {
-        console.log('sb exists, qc exists, disable it')
+        this.$log.info('sb exists, qc exists, disable it')
         return true
       }
       if (this.sbClient && !this.qClient) {
-        console.log('sb exists, qc doesnt exist, enable it')
+        this.$log.info('sb exists, qc doesnt exist, enable it')
         return false
       }
       if (!this.sbClient) {
-        console.log('sb doesnt exist, disable it')
+        this.$log.info('sb doesnt exist, disable it')
         return true
       }
-      console.log('default, disable')
+      this.$log.info('default, disable')
       return true
     }
   },
@@ -171,7 +171,7 @@ export default {
   },
 
   created () {
-    console.log('ServiceBusQueueClient component created')
+    this.$log.info('ServiceBusQueueClient component created')
     this.qName = localStorage.getItem('qName')
   }
 }

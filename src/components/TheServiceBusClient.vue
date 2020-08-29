@@ -78,7 +78,7 @@ export default {
   },
 
   created () {
-    console.log('TheServiceBusClient component created')
+    this.$log.info('TheServiceBusClient component created')
     this.connectionString = localStorage.getItem('connectionString')
     if (this.connectionString) {
       this.connectToServiceBus()
@@ -100,13 +100,13 @@ export default {
     connectToServiceBus () {
       this.sbClient = ServiceBusClient.createFromConnectionString(this.connectionString)
       this.$emit('create:serviceBusClient', this.sbClient)
-      console.log('Connected to ServiceBusClient')
+      this.$log.info('Connected to ServiceBusClient')
     },
     async disconnect () {
       await this.sbClient.close()
       this.sbClient = null
       this.$emit('destroy:serviceBusClient')
-      console.log('Disconneted ServiceBusClient')
+      this.$log.info('Disconneted ServiceBusClient')
     }
   }
 }

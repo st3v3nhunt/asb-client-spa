@@ -2,7 +2,6 @@
 
 * Refactor `disableConnectButton` in Queue Client
 * Emit Service Bus errors from SB Queue Client to show them against connection string
-* Is there a standard way of turning logging on or off in the project?
 * Add back-end data store to save what currently goes in local storage
 * Show available queues for the Service Bus
 * Select the queue to use from the list
@@ -59,3 +58,4 @@
 * Handle unable to connect to service bus
 * Review `console.log` statements
 * Handle unknown queues
+* Is there a standard way of turning logging on or off in the project?
