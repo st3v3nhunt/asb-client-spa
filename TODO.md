@@ -1,5 +1,7 @@
 ## Features
 
+* Disable connection string and queue name input as soon as connect is clicked
+* Add copy button for connection string, queue an message
 * Refactor `disableConnectButton` in Queue Client
 * Emit Service Bus errors from SB Queue Client to show them against connection string
 * Add back-end data store to save what currently goes in local storage
