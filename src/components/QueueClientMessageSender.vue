@@ -112,7 +112,7 @@ export default {
     checkForm () {
       this.errors = []
       // TODO: add some validation
-      console.log('Validation pending...')
+      this.$log.info('Validation pending...')
 
       if (!this.errors.length) {
         localStorage.setItem('message', this.message)
@@ -131,16 +131,16 @@ export default {
         const messageToSend = addUuidPropsToMessage(this.message, this.uuidProps)
         await this.sender.send({ body: messageToSend })
         this.messages.unshift(messageToSend)
-        console.log('Sending message', messageToSend)
+        this.$log.info('Sending message', messageToSend)
       } catch (err) {
         this.errors.push(err)
-        console.error('Error during message sending', err)
+        this.$log.error('Error during message sending', err)
       }
     }
   },
 
   created () {
-    console.log('QueueClientMessageSender component created')
+    this.$log.info('QueueClientMessageSender component created')
     if (localStorage.getItem('message')) {
       this.message = localStorage.getItem('message')
     }
