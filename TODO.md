@@ -12,7 +12,6 @@
 * Add ability to specify the constraints for all message properties and dynamically generate them for each message
 * Namespace the message against the queue in local storage
 * Enable the interface to have multiple queues receiving messages, possibly tabs?
-* Install Bulma rather than linking to the CDN version
 * Add some tests
 
 ## Error Handling
@@ -62,3 +61,4 @@
 * Review `console.log` statements
 * Handle unknown queues
 * Is there a standard way of turning logging on or off in the project?
+* Install Bulma rather than linking to the CDN version
