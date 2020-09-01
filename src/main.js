@@ -1,3 +1,4 @@
+import 'bulma/css/bulma.css'
 import App from './App.vue'
 import logger from './plugins/logger.js'
 import Vue from 'vue'
