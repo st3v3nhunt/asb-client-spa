@@ -16,6 +16,8 @@ jobs:
       with:
         node-version: 12
     - name: Build site
+      env:
+        PUBLIC_PATH: '/asb-client-spa/'
       run: |
         npm ci
         npm run build

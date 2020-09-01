@@ -18,4 +18,6 @@ jobs:
     - name: Lint
       run: npm run lint
     - name: Build site
+      env:
+        PUBLIC_PATH: '/asb-client-spa/'
       run: npm run build
