@@ -31,6 +31,14 @@ is protected and only approved PRs can be merged into it.
 PRs have a specific build process as detailed in
 [main.yml](./github/workflows/main.yml).
 
+### Logging
+
+A [plugin](./src/plugins/logger.js) is used to add an instance of
+[loglevel](https://www.npmjs.com/package/loglevel), to the Vue instance. This
+enables a centrally controlled logger to provide logging via the `$log`
+instance method e.g. within a Vue component
+`this.$log.<trace|debug|info|warn|error>` should be used to messages.
+
 ## Deployment
 
 When a change is pushed to the default branch (when a PR is merged) the
