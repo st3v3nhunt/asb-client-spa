@@ -1,6 +1,6 @@
 # Azure Service Bus (ASB) Client Single Page Application (SPA)
 
-[![Deploy](https://github.com/st3v3nhunt/asb-client-spa/workflows/Deploy/badge.svg)](https://github.com/st3v3nhunt/asb-client-spa/actions?query=workflow%3ADeploy)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/faddd526-b59a-49cb-b5c5-6c8eac0bfe17/deploy-status)](https://app.netlify.com/sites/asbc/deploys)
 
 > A basic single page application client for
   [Azure Service Bus](https://docs.microsoft.com/en-us/azure/service-bus-messaging/service-bus-messaging-overview)
@@ -28,10 +28,7 @@ Development should be done on a feature branch so it can be pushed to the
 remote where a PR can be created against the default branch. The default branch
 is protected and only approved PRs can be merged into it.
 
-PRs have a specific build process as detailed in
-[main.yml](./github/workflows/main.yml).
-
-### Logging
+### In application logging
 
 A [plugin](./src/plugins/logger.js) is used to add an instance of
 [loglevel](https://www.npmjs.com/package/loglevel), to the Vue instance. This
@@ -39,35 +36,46 @@ enables a centrally controlled logger to provide logging via the `$log`
 instance method e.g. within a Vue component
 `this.$log.<trace|debug|info|warn|error>` should be used to messages.
 
-## Deployment
+## Deployment and hosting
 
-When a change is pushed to the default branch (when a PR is merged) the
-[deploy action](.github/workflows/deploy.yml) will run.
+Deployments and hosting are handled by [Netlify](https://www.netlify.com/). The
+current setup has changes to the main branch (`master`) deployed to
+[asbc.netlfiy.app](https://asbc.netlify.app/). This will happen when merges to
+the main branch are made from PR branches. Any branch with a PR that is set to
+merge into the main branch will be deployed to a preview environment. It is
+possible, although not currently setup, for _all_ branches regardless of
+whether they have a PR merging into the main branch or not to have a preview
+environment created.
 
-`npm run build` runs, packaging the site into `./dist` so it can be deployed to
-a static site hosting provider.
-Currently [GitHub Pages](https://pages.github.com/) is used. The packaged site
-it pushed to the
-[`gh-pages`](https://github.com/st3v3nhunt/asb-client-spa/tree/gh-pages) branch
-of this repo and is served at
-[st3v3nhunt.github.io/asb-client-spa/](https://st3v3nhunt.github.io/asb-client-spa/).
+Previously [GitHub Pages](https://pages.github.com/) were deployed to via
+[GitHub Actions](https://github.com/features/actions). This also occurred on a
+merge to the main branch, however, for reasons covered in adr
+[0002](./doc/adr/0002-use-netlify-for-deployments-and-hosting.md) this is no
+longer the case. Although it actually still happens for reasons...
+
+The Netlify build runs `npm run build` which packages the site into `./dist`
+and then this directory is used as the publishing directory by Netlify. A
+Netlify configuration file will be introduced to the repo at some point to make
+the config explicit.
 
 ### Testing prior to deployment
 
-There aren't any integration environments to test the changes in prior to
-deployment, mainly because there is very little difference between the
-development environment and the deployed environment. However, it is possible
-to run a test environment based on the packaged site that is created during the
-build step in the deployment job.
+With preview environments being available for all PRs merging into the main
+branch there is little need to run a similar environment on a development or
+indeed any other machine. However, it is straight forward to do so, should
+there be the desire.
 
-This is done by first installing [serve](https://www.npmjs.com/package/serve)
-(`npm install -g serve`), running the build and serving the site
+An initial step is to have a static file server available e.g.
+[serve](https://www.npmjs.com/package/serve). Once serve is installed
+(`npm install -g serve`) the site needs to be built and then serve can serve
+the site. This amounts to running these commands (assuming `dist` is the output
+directory from the build, which it is by default).
 ```
 npm run build
 serve -s dist
 ```
 
-## Customize configuration
+## Customize site configuration
 
 See [Configuration Reference](https://cli.vuejs.org/config/).
 
