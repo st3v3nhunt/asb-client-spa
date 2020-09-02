@@ -62,3 +62,4 @@
 * Handle unknown queues
 * Is there a standard way of turning logging on or off in the project?
 * Install Bulma rather than linking to the CDN version
+* Deploy to Netlify in favour of GitHub Pages
