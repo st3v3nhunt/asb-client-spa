@@ -1,5 +1,7 @@
 ## Features
 
+* Investigate how to get tests integrated into Netlify build
+* Introduce Netlify toml configuration
 * Extend tests
 * Figure out why setting the `eslint-env` is required within the test files when it should be getting picked up from `.eslintrc.js`
 * Disable connection string and queue name input as soon as connect is clicked
@@ -65,3 +67,4 @@
 * Install Bulma rather than linking to the CDN version
 * Deploy to Netlify in favour of GitHub Pages
 * Add some tests
+* Add tests to GitHub build workflow
