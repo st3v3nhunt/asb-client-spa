@@ -1,5 +1,7 @@
 ## Features
 
+* Extend tests
+* Figure out why setting the `eslint-env` is required within the test files when it should be getting picked up from `.eslintrc.js`
 * Disable connection string and queue name input as soon as connect is clicked
 * Add copy button for connection string, queue an message
 * Automate release number increments
@@ -12,7 +14,6 @@
 * Add ability to specify the constraints for all message properties and dynamically generate them for each message
 * Namespace the message against the queue in local storage
 * Enable the interface to have multiple queues receiving messages, possibly tabs?
-* Add some tests
 
 ## Error Handling
 
@@ -63,3 +64,7 @@
 * Is there a standard way of turning logging on or off in the project?
 * Install Bulma rather than linking to the CDN version
 * Deploy to Netlify in favour of GitHub Pages
+* Add some tests
+* Add tests to GitHub build workflow
+* Investigate how to get tests integrated into Netlify build
+* Introduce Netlify toml configuration
