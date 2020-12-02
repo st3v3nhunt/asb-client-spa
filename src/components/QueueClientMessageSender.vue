@@ -129,7 +129,7 @@ export default {
       }
       try {
         const messageToSend = addUuidPropsToMessage(this.message, this.uuidProps)
-        await this.sender.send({ body: messageToSend })
+        await this.sender.send(messageToSend)
         this.messages.unshift(messageToSend)
         this.$log.info('Sending message', messageToSend)
       } catch (err) {

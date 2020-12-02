@@ -50,10 +50,10 @@
           :class="index === 0 ? 'is-info' : 'is-dark'"
           >
           <div class="message-header">
-            <p>MessageId: {{ message.messageId }}. Queue Source: {{ message._context.entityPath }}. Enqueued at: {{ message.enqueuedTimeUtc }}</p>
+            <p>MessageId: {{ message.messageId }}. Enqueued at: {{ message.enqueuedTimeUtc }}</p>
           </div>
 
-          <div class="message-body">{{ message.body }}</div>
+          <div class="message-body">{{ message }}</div>
         </article>
       </div>
     </div>
@@ -84,8 +84,10 @@ export default {
     },
     async receiveMessages () {
       this.receiver = this.qClient.createReceiver(ReceiveMode.receiveAndDelete)
-      this.receiver.registerMessageHandler(async (msg) => {
-        this.$log.info('Received message:', msg)
+      this.receiver.registerMessageHandler(async (data) => {
+        this.$log.info('Received message:', data)
+        const msg = { body: data.body, correlationId: data.correlationId, enqueuedTimeUtc: data.enqueuedTimeUtc, messageId: data.messageId, userProperties: data.userProperties }
+        this.$log.info('Simplified message:', msg)
         this.messages.unshift(msg)
       },
       async (err) => {
