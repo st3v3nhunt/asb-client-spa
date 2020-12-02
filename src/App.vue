@@ -2,8 +2,8 @@
   <section class="section">
     <div class="container is-fluid">
       <the-service-bus-client
-        @create:serviceBusClient="setServiceBusClient"
-        @destroy:serviceBusClient="destroyServiceBusClient"
+        @create-service-bus-client="setServiceBusClient"
+        @destroy-service-bus-client="destroyServiceBusClient"
         />
       <service-bus-queue-client :sbClient="sbClient"/>
     </div>

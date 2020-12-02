@@ -99,13 +99,13 @@ export default {
     },
     connectToServiceBus () {
       this.sbClient = ServiceBusClient.createFromConnectionString(this.connectionString)
-      this.$emit('create:serviceBusClient', this.sbClient)
+      this.$emit('create-service-bus-client', this.sbClient)
       this.$log.info('Connected to ServiceBusClient')
     },
     async disconnect () {
       await this.sbClient.close()
       this.sbClient = null
-      this.$emit('destroy:serviceBusClient')
+      this.$emit('destroy-service-bus-client')
       this.$log.info('Disconneted ServiceBusClient')
     }
   }

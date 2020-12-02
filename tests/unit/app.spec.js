@@ -27,7 +27,7 @@ describe('App.vue', () => {
 
   it('updates sbClient when it is created', () => {
     const theServiceBusClient = appWrapper.findComponent(TheServiceBusClient)
-    theServiceBusClient.vm.$emit('create:serviceBusClient', sbClientMock)
+    theServiceBusClient.vm.$emit('create-service-bus-client', sbClientMock)
 
     expect(appWrapper.vm.$data.sbClient).toEqual(sbClientMock)
   })
@@ -35,7 +35,7 @@ describe('App.vue', () => {
   it('sets sbClient to null when it is destroyed', () => {
     appWrapper.vm.$data.sbClient = sbClientMock
     const theServiceBusClient = appWrapper.findComponent(TheServiceBusClient)
-    theServiceBusClient.vm.$emit('destroy:serviceBusClient')
+    theServiceBusClient.vm.$emit('destroy-service-bus-client')
 
     expect(appWrapper.vm.$data.sbClient).toEqual(null)
     expect(infoMsg).toEqual('Destroying ServiceBusClient')
