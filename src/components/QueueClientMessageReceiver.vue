@@ -45,15 +45,15 @@
       <div class="column">
         <article
           v-for="(message, index) in messages"
-          :key="message.messageId"
+          :key="message.header.id"
           class="message is-small"
           :class="index === 0 ? 'is-info' : 'is-dark'"
           >
           <div class="message-header">
-            <p>MessageId: {{ message.messageId }}. Enqueued at: {{ message.enqueuedTimeUtc }}</p>
+            <p>MessageId: {{ message.header.id }}. Enqueued at: {{ message.header.enqueuedTimeUtc }}</p>
           </div>
 
-          <div class="message-body">{{ message }}</div>
+          <div class="message-body">{{ message.msg }}</div>
         </article>
       </div>
     </div>
@@ -87,8 +87,9 @@ export default {
         processError: async (err) => this.$log.error('Error receiving message:', err),
         processMessage: async (data) => {
           this.$log.info('Received message:', data)
-          const msg = { body: data.body, correlationId: data.correlationId, enqueuedTimeUtc: data.enqueuedTimeUtc, messageId: data.messageId, userProperties: data.userProperties }
-          this.messages.unshift(msg)
+          const msg = { body: data.body, correlationId: data.correlationId, userProperties: data.userProperties }
+          const header = { enqueuedTimeUtc: data.enqueuedTimeUtc, id: data.messageId }
+          this.messages.unshift({ header, msg })
         }
       })
       this.$log.info('Receiving messages')
