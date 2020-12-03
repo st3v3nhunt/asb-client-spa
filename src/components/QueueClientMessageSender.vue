@@ -40,7 +40,7 @@
               <div class="control">
                 <button
                   class="button is-success is-fullwidth"
-                  :disabled="!qClient"
+                  :disabled="!sbClient || !qName"
                   >Send Message</button>
               </div>
             </div>
@@ -57,7 +57,7 @@
           <div class="columns">
             <div class="column">
               <div class="control">
-                <p :class="messages.length === 0 && 'is-invisible'">Messages sent to <span class="tag is-success">{{ qClient && qClient.entityPath }}</span>: {{ messages.length }}</p>
+                <p :class="messages.length === 0 && 'is-invisible'">Messages sent to <span class="tag is-success">{{ sbClient && sbClient.fullyQualifiedNamespace }}</span>: {{ messages.length }}</p>
               </div>
             </div>
           </div>
@@ -79,13 +79,13 @@
 </template>
 
 <script>
-const { v1: uuidv1 } = require('uuid')
+const { v1: uuid } = require('uuid')
 
 function addUuidPropsToMessage (rawMessage, uuidProps) {
   const message = JSON.parse(rawMessage)
   if (uuidProps) {
     uuidProps.split(',').map(x => x.trim()).forEach(prop => {
-      message[prop] = uuidv1()
+      message[prop] = uuid()
     })
   }
   return message
@@ -105,7 +105,8 @@ export default {
   },
 
   props: {
-    qClient: Object
+    qName: String,
+    sbClient: Object
   },
 
   methods: {
@@ -125,11 +126,11 @@ export default {
     },
     async sendMessage () {
       if (!this.sender) {
-        this.sender = this.qClient.createSender()
+        this.sender = this.sbClient.createSender(this.qName)
       }
       try {
         const messageToSend = addUuidPropsToMessage(this.message, this.uuidProps)
-        await this.sender.send(messageToSend)
+        await this.sender.sendMessages(messageToSend)
         this.messages.unshift(messageToSend)
         this.$log.info('Sending message', messageToSend)
       } catch (err) {
@@ -140,7 +141,7 @@ export default {
   },
 
   created () {
-    this.$log.info('QueueClientMessageSender component created')
+    this.$log.info('QueueClientMessageSender component created', this)
     if (localStorage.getItem('message')) {
       this.message = localStorage.getItem('message')
     }
@@ -148,9 +149,9 @@ export default {
   },
 
   watch: {
-    async qClient () {
-      if (this.qClient) {
-        this.sender = this.qClient.createSender()
+    async sbClient () {
+      if (this.sbClient && this.qName) {
+        this.sender = this.sbClient.createSender(this.qName)
       } else {
         this.sender = null
       }

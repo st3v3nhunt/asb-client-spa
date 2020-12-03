@@ -5,14 +5,14 @@
         <div class="control">
           <button
             class="button is-success is-fullwidth"
-            :disabled="!qClient || isReceiving"
+            :disabled="!sbClient || isReceiving"
             @click="receiveMessages"
             >Receive Messages</button>
         </div>
         <p
           class="content"
           :class="!isReceiving && 'is-invisible'"
-          >Receiving messages from <span class="tag is-success">{{ qClient ? qClient.entityPath : '' }}</span>
+          >Receiving messages from <span class="tag is-success">{{ sbClient ? sbClient.fullyQualifiedNamespace : '' }}</span>
         </p>
         <p
           class="content"
@@ -45,15 +45,15 @@
       <div class="column">
         <article
           v-for="(message, index) in messages"
-          :key="message.messageId"
+          :key="message.header.id"
           class="message is-small"
           :class="index === 0 ? 'is-info' : 'is-dark'"
           >
           <div class="message-header">
-            <p>MessageId: {{ message.messageId }}. Enqueued at: {{ message.enqueuedTimeUtc }}</p>
+            <p>MessageId: {{ message.header.id }}. Enqueued at: {{ message.header.enqueuedTimeUtc }}</p>
           </div>
 
-          <div class="message-body">{{ message }}</div>
+          <div class="message-body">{{ message.msg }}</div>
         </article>
       </div>
     </div>
@@ -61,8 +61,6 @@
 </template>
 
 <script>
-import { ReceiveMode } from '@azure/service-bus'
-
 export default {
   name: 'QueueClientMessageReceiver',
 
@@ -75,23 +73,24 @@ export default {
   },
 
   props: {
-    qClient: Object
+    qName: String,
+    sbClient: Object
   },
 
   methods: {
     clearMessages () {
       this.messages = []
     },
-    async receiveMessages () {
-      this.receiver = this.qClient.createReceiver(ReceiveMode.receiveAndDelete)
-      this.receiver.registerMessageHandler(async (data) => {
-        this.$log.info('Received message:', data)
-        const msg = { body: data.body, correlationId: data.correlationId, enqueuedTimeUtc: data.enqueuedTimeUtc, messageId: data.messageId, userProperties: data.userProperties }
-        this.$log.info('Simplified message:', msg)
-        this.messages.unshift(msg)
-      },
-      async (err) => {
-        this.$log.error('Error receiving message:', err)
+    receiveMessages () {
+      this.receiver = this.sbClient.createReceiver(this.qName, { receiveMode: 'receiveAndDelete' })
+      this.receiver.subscribe({
+        processError: async (err) => this.$log.error('Error receiving message:', err),
+        processMessage: async (data) => {
+          this.$log.info('Received message:', data)
+          const msg = { body: data.body, correlationId: data.correlationId, userProperties: data.userProperties }
+          const header = { enqueuedTimeUtc: data.enqueuedTimeUtc, id: data.messageId }
+          this.messages.unshift({ header, msg })
+        }
       })
       this.$log.info('Receiving messages')
       this.isReceiving = true
@@ -104,8 +103,8 @@ export default {
   },
 
   watch: {
-    qClient () {
-      if (!this.qClient) {
+    sbClient () {
+      if (!this.sbClient) {
         this.isReceiving = false
       }
     }

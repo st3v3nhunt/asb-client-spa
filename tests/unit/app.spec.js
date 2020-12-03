@@ -1,7 +1,6 @@
 /* eslint-env jest */
 import { shallowMount } from '@vue/test-utils'
 import App from '@/App.vue'
-import ServiceBusQueueClient from '@/components/ServiceBusQueueClient.vue'
 import TheServiceBusClient from '@/components/TheServiceBusClient.vue'
 
 describe('App.vue', () => {
@@ -18,11 +17,9 @@ describe('App.vue', () => {
     })
   })
 
-  it('contains TheServiceBusClient and ServiceBusQueueClient', () => {
+  it('contains TheServiceBusClient', () => {
     const theServiceBusClient = appWrapper.findComponent(TheServiceBusClient)
     expect(theServiceBusClient.exists()).toBe(true)
-    const serviceBusQueueClient = appWrapper.findComponent(ServiceBusQueueClient)
-    expect(serviceBusQueueClient.exists()).toBe(true)
   })
 
   it('updates sbClient when it is created', () => {
