@@ -87,7 +87,7 @@ export default {
         processError: async (err) => this.$log.error('Error receiving message:', err),
         processMessage: async (data) => {
           this.$log.info('Received message:', data)
-          const msg = { body: data.body, correlationId: data.correlationId, userProperties: data.userProperties }
+          const msg = { body: data.body, correlationId: data.correlationId, applicationProperties: data.applicationProperties }
           const header = { enqueuedTimeUtc: data.enqueuedTimeUtc, id: data.messageId }
           this.messages.unshift({ header, msg })
         }
