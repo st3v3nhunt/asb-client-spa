@@ -80,6 +80,7 @@
                     @click.prevent="saveQName"
                     >Save queue</button>
                 </div>
+      <!--
                 <div class="control">
                   <button
                     class="button is-warning"
@@ -94,6 +95,7 @@
                     @click.prevent="clearQName"
                     >Clear queue</button>
                 </div>
+      -->
               </div>
             </div>
           </div>
