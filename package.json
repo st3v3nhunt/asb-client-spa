@@ -12,9 +12,9 @@
   "dependencies": {
     "@azure/service-bus": "^7.0.0",
     "bulma": "^0.9.1",
-    "core-js": "^3.8.0",
+    "core-js": "^3.8.1",
     "loglevel": "^1.7.1",
-    "uuid": "^8.3.1",
+    "uuid": "^8.3.2",
     "vue": "^2.6.12"
   },
   "devDependencies": {
@@ -22,15 +22,15 @@
     "@vue/cli-plugin-eslint": "^4.5.9",
     "@vue/cli-plugin-unit-jest": "^4.5.9",
     "@vue/cli-service": "^4.5.9",
-    "@vue/eslint-config-standard": "^5.1.2",
-    "@vue/test-utils": "^1.1.1",
+    "@vue/eslint-config-standard": "^6.0.0",
+    "@vue/test-utils": "^1.1.2",
     "babel-eslint": "^10.1.0",
-    "eslint": "^7.14.0",
+    "eslint": "^7.17.0",
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-standard": "^5.0.0",
-    "eslint-plugin-vue": "^7.1.0",
+    "eslint-plugin-vue": "^7.4.0",
     "vue-template-compiler": "^2.6.12"
   }
 }
